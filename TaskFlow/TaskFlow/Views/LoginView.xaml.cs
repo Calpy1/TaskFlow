@@ -21,7 +21,7 @@ namespace TaskFlow.Views
             _auth.AttachInputEventHandlers(PasswordTextBox);
 
             this.MouseDown += Window_MouseDown;
-            this.KeyDown += Window_KeyDown;
+            //this.KeyDown += Window_KeyDown;
 
             Loaded += LoginView_Loaded;
         }
@@ -32,8 +32,11 @@ namespace TaskFlow.Views
 
             if (quickLoginSuccess)
             {
-                MessageBox.Show("Быстрый вход успешен.", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
+                //MessageBox.Show("Быстрый вход успешен.", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
                 // TODO: перейти к главному окну
+
+                var loaderWindow = new LoaderView();
+                loaderWindow.Show();
                 this.Close();
             }
         }
@@ -42,22 +45,23 @@ namespace TaskFlow.Views
         {
             if (e.LeftButton == MouseButtonState.Pressed)
             {
-                this.Focus();
+                LoginViewMainWindow.Focus();
                 DragMove();
             }
         }
 
-        private void Window_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.Key == Key.Enter)
-            {
-                this.Focus();
-                AttemptLogin(validateInputs: false);
-            }
-        }
+        //private void Window_KeyDown(object sender, KeyEventArgs e)
+        //{
+        //    if (e.Key == Key.Enter)
+        //    {
+        //        e.Handled = true;
+        //        AttemptLogin(validateInputs: false);
+        //    }
+        //}
 
         private void ResultButton_Click(object sender, RoutedEventArgs e)
         {
+            e.Handled = true;
             AttemptLogin(validateInputs: true);
         }
 

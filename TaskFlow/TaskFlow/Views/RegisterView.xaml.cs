@@ -22,29 +22,30 @@ namespace TaskFlow.Views
             _auth.AttachInputEventHandlers(PasswordTextBox);
 
             this.MouseDown += Window_MouseDown;
-            this.KeyDown += Window_KeyDown;
+            //this.KeyDown += Window_KeyDown;
         }
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (e.LeftButton == MouseButtonState.Pressed)
             {
-                this.Focus();
+                RegisterMainViewWindow.Focus();
                 DragMove();
             }
         }
 
-        private void Window_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.Key == Key.Enter)
-            {
-                this.Focus();
-                AttemptRegister(validateInputs: false);
-            }
-        }
+        //private void Window_KeyDown(object sender, KeyEventArgs e)
+        //{
+        //    if (e.Key == Key.Enter)
+        //    {
+        //        e.Handled = true;
+        //        AttemptRegister(validateInputs: false);
+        //    }
+        //}
 
         private void ResultButton_Click(object sender, RoutedEventArgs e)
         {
+            e.Handled = true;
             AttemptRegister(validateInputs: true);
         }
 

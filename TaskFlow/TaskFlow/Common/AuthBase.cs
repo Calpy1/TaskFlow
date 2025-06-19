@@ -11,6 +11,7 @@ using System.Text.Json;
 using System.IO;
 using TaskFlow.Models;
 using System.Net.NetworkInformation;
+using TaskFlow.Views;
 
 namespace TaskFlow.Common
 {
@@ -102,7 +103,6 @@ namespace TaskFlow.Common
                 {
                     if (apiEndpoint == "api/auth/login" && rememberMe)
                     {
-
                         SaveUserCredentials(email, userToken);
                     }
 
@@ -224,24 +224,40 @@ namespace TaskFlow.Common
 
         private static void ShowSuccessMessage(string apiEndpoint)
         {
+            var loader = new LoaderView();
             string message;
 
             switch (apiEndpoint)
             {
                 case "api/auth/register":
-                    message = "Регистрация прошла успешно.";
+                    //message = "Регистрация прошла успешно.";
+                    FindCurrentWindow();
                     break;
                 case "api/auth/login":
-                    message = "Авторизация прошла успешно.";
+                    //message = "Авторизация прошла успешно.";
+                    loader.Show();
+                    FindCurrentWindow();
                     break;
                 default:
                     message = string.Empty;
                     break;
             }
 
-            if (!string.IsNullOrEmpty(message))
+            //if (!string.IsNullOrEmpty(message))
+            //{
+            //    ShowMessage(message, "Успех", MessageBoxImage.Information);
+            //}
+        }
+
+        public static void FindCurrentWindow()
+        {
+            foreach (Window window in Application.Current.Windows)
             {
-                ShowMessage(message, "Успех", MessageBoxImage.Information);
+                if (window is LoginView loginView || window is RegisterView registerView)
+                {
+                    window.Close();
+                    break;
+                }
             }
         }
 

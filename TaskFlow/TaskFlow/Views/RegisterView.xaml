@@ -7,9 +7,9 @@
         mc:Ignorable="d"
         Title="RegisterView" Height="500" Width="400"
         Background="Transparent" AllowsTransparency="True"
-        ResizeMode="CanMinimize" WindowStyle="None" WindowStartupLocation="CenterScreen" KeyDown="Window_KeyDown">
+        ResizeMode="CanMinimize" WindowStyle="None" WindowStartupLocation="CenterScreen">
     <Grid>
-        <Border x:Name="LoginViewMainWindow" Margin="10" Background="White" CornerRadius="15" Focusable="True" MouseDown="Window_MouseDown">
+        <Border x:Name="RegisterMainViewWindow" Margin="10" Background="White" CornerRadius="15" Focusable="True" MouseDown="Window_MouseDown">
             <Border.Effect>
                 <DropShadowEffect Color="Black"
                               ShadowDepth="0"
@@ -47,7 +47,7 @@
 
                 <Button x:Name="ResultButton" Height="50" Cursor="Hand"
                     FontFamily="Bahnschrift SemiLight SemiCondensed" FontSize="25" BorderThickness="2"
-                    Margin="0, 28, 0, 7" Click="ResultButton_Click">
+                    Margin="0, 28, 0, 7" Click="ResultButton_Click" IsDefault="True">
 
                     <Button.Style>
                         <Style TargetType="Button">
