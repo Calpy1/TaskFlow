@@ -2,6 +2,7 @@
 using System.Windows.Input;
 using TaskFlow.Common;
 using TaskFlow.Models;
+using TaskFlow.Services;
 
 namespace TaskFlow.Views
 {
@@ -35,9 +36,7 @@ namespace TaskFlow.Views
                 //MessageBox.Show("Быстрый вход успешен.", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
                 // TODO: перейти к главному окну
 
-                var loaderWindow = new LoaderView();
-                loaderWindow.Show();
-                this.Close();
+                await WindowsService.OpenWindowAsync<LoaderView>(this);
             }
         }
 
@@ -49,15 +48,6 @@ namespace TaskFlow.Views
                 DragMove();
             }
         }
-
-        //private void Window_KeyDown(object sender, KeyEventArgs e)
-        //{
-        //    if (e.Key == Key.Enter)
-        //    {
-        //        e.Handled = true;
-        //        AttemptLogin(validateInputs: false);
-        //    }
-        //}
 
         private void ResultButton_Click(object sender, RoutedEventArgs e)
         {
@@ -85,9 +75,7 @@ namespace TaskFlow.Views
 
         private void HaveAccountButton_Click(object sender, RoutedEventArgs e)
         {
-            var registerWindow = new RegisterView();
-            registerWindow.Show();
-            this.Close();
+            _ = WindowsService.OpenWindowAsync<RegisterView>(this);
         }
     }
 }

@@ -11,7 +11,10 @@
         ResizeMode="NoResize" WindowStyle="None" WindowStartupLocation="CenterScreen" MouseDown="Window_MouseDown">
     <Grid>
         <Border Background="White" CornerRadius="15">
-            <controls:CustomLoader Height="200" Width="200"/>
+            <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <TextBlock Text="Please stand by" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Bahnschrift SemiLight SemiCondensed" FontSize="32" Foreground="#FF549CEC"/>
+                <controls:CustomLoader Height="200" Width="200"/>
+            </StackPanel>
         </Border>
     </Grid>
 </Window>

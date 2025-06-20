@@ -12,6 +12,7 @@ using System.IO;
 using TaskFlow.Models;
 using System.Net.NetworkInformation;
 using TaskFlow.Views;
+using TaskFlow.Services;
 
 namespace TaskFlow.Common
 {
@@ -26,6 +27,9 @@ namespace TaskFlow.Common
         {
             BaseAddress = new Uri("https://localhost:7034/")
         };
+
+        private static LoaderView loader = new LoaderView();
+        private static LoginView loginView = new LoginView();
 
         public async Task<bool> AuthenticateWithApiAsync(string email, string hashedPassword, string userToken, string mac, string apiEndpoint)
         {
@@ -222,21 +226,19 @@ namespace TaskFlow.Common
             File.WriteAllText("user.dat", json);
         }
 
-        private static void ShowSuccessMessage(string apiEndpoint)
+        private void ShowSuccessMessage(string apiEndpoint)
         {
-            var loader = new LoaderView();
             string message;
 
             switch (apiEndpoint)
             {
                 case "api/auth/register":
                     //message = "Регистрация прошла успешно.";
-                    FindCurrentWindow();
+                    _ = WindowsService.OpenWindowAsync<LoginView>(FindCurrentWindow());
                     break;
                 case "api/auth/login":
                     //message = "Авторизация прошла успешно.";
-                    loader.Show();
-                    FindCurrentWindow();
+                    _ = WindowsService.OpenWindowAsync<LoaderView>(FindCurrentWindow());
                     break;
                 default:
                     message = string.Empty;
@@ -249,16 +251,9 @@ namespace TaskFlow.Common
             //}
         }
 
-        public static void FindCurrentWindow()
+        private Window? FindCurrentWindow()
         {
-            foreach (Window window in Application.Current.Windows)
-            {
-                if (window is LoginView loginView || window is RegisterView registerView)
-                {
-                    window.Close();
-                    break;
-                }
-            }
+            return Application.Current.Windows.OfType<Window>().FirstOrDefault(w => w.IsActive);
         }
 
         private static void ShowMessage(string text, string caption, MessageBoxImage icon)

@@ -2,6 +2,7 @@
 using System.Windows.Input;
 using TaskFlow.Common;
 using TaskFlow.Models;
+using TaskFlow.Services;
 
 namespace TaskFlow.Views
 {
@@ -34,15 +35,6 @@ namespace TaskFlow.Views
             }
         }
 
-        //private void Window_KeyDown(object sender, KeyEventArgs e)
-        //{
-        //    if (e.Key == Key.Enter)
-        //    {
-        //        e.Handled = true;
-        //        AttemptRegister(validateInputs: false);
-        //    }
-        //}
-
         private void ResultButton_Click(object sender, RoutedEventArgs e)
         {
             e.Handled = true;
@@ -73,9 +65,7 @@ namespace TaskFlow.Views
 
         private void HaveAccountButton_Click(object sender, RoutedEventArgs e)
         {
-            var loginWindow = new LoginView();
-            loginWindow.Show();
-            this.Close();
+            _ = WindowsService.OpenWindowAsync<LoginView>(this);
         }
     }
 }
