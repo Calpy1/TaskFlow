@@ -55,7 +55,7 @@ namespace TaskFlow.Views
             AttemptLogin(validateInputs: true);
         }
 
-        private void AttemptLogin(bool validateInputs)
+        private async void AttemptLogin(bool validateInputs)
         {
             if (validateInputs)
             {
@@ -70,7 +70,7 @@ namespace TaskFlow.Views
             bool hasError = string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(password);
             bool rememberUser = CheckBoxRememberMe.IsChecked == true;
 
-            _ = _auth.AuthenticateUserAsync(hasError, email, password, rememberUser, "api/auth/login");
+            await _auth.AuthenticateUserAsync(hasError, email, password, rememberUser, "api/auth/login");
         }
 
         private void HaveAccountButton_Click(object sender, RoutedEventArgs e)

@@ -41,7 +41,7 @@ namespace TaskFlow.Views
             AttemptRegister(validateInputs: true);
         }
 
-        private void AttemptRegister(bool validateInputs)
+        private async void AttemptRegister(bool validateInputs)
         {
             if (validateInputs)
             {
@@ -60,7 +60,7 @@ namespace TaskFlow.Views
             string password = PasswordTextBox.TextBoxInput.Text;
             bool hasError = string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(password);
 
-            _ = _auth.AuthenticateUserAsync(hasError, email, password, rememberMe: false, "api/auth/register");
+            await _auth.AuthenticateUserAsync(hasError, email, password, rememberMe: false, "api/auth/register");
         }
 
         private void HaveAccountButton_Click(object sender, RoutedEventArgs e)

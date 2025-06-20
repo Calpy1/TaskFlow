@@ -28,12 +28,33 @@ namespace TaskFlow.Common
             BaseAddress = new Uri("https://localhost:7034/")
         };
 
-        private static LoaderView loader = new LoaderView();
-        private static LoginView loginView = new LoginView();
-
         public async Task<bool> AuthenticateWithApiAsync(string email, string hashedPassword, string userToken, string mac, string apiEndpoint)
         {
             var requestData = new { Email = email.Trim(), Password = hashedPassword.Trim(), UserToken = userToken, Mac = mac };
+
+            try
+            {
+                var response = await HttpClient.PostAsJsonAsync(apiEndpoint, requestData);
+                if (response.IsSuccessStatusCode)
+                {
+                    return true;
+                }
+                else
+                {
+                    ShowMessage($"Сервер вернул ошибку: {response.StatusCode}", "Ошибка", MessageBoxImage.Warning);
+                    return false;
+                }
+            }
+            catch (HttpRequestException ex)
+            {
+                ShowMessage($"Ошибка соединения с сервером: {ex.Message}", "Ошибка", MessageBoxImage.Error);
+                return false;
+            }
+        }
+
+        public async Task<bool> QuickLoginWithApiAsync(string email, string userToken, string mac, string apiEndpoint)
+        {
+            var requestData = new { Email = email.Trim(), UserToken = userToken, Mac = mac };
 
             try
             {
@@ -144,7 +165,7 @@ namespace TaskFlow.Common
                 }
                 //MessageBox.Show($"{user.Email}\n{user.Token}\n{GetMac()}");
 
-                return await AuthenticateWithApiAsync(user.Email, string.Empty, user.Token, _userMac, "api/auth/quicklogin");
+                return await QuickLoginWithApiAsync(user.Email, user.Token, _userMac, "api/auth/quicklogin");
             }
             catch (Exception e)
             {
@@ -233,22 +254,22 @@ namespace TaskFlow.Common
             switch (apiEndpoint)
             {
                 case "api/auth/register":
-                    //message = "Регистрация прошла успешно.";
-                    _ = WindowsService.OpenWindowAsync<LoginView>(FindCurrentWindow());
+                    message = "Регистрация прошла успешно.";
+                    //_ = WindowsService.OpenWindowAsync<LoginView>(FindCurrentWindow());
                     break;
                 case "api/auth/login":
-                    //message = "Авторизация прошла успешно.";
-                    _ = WindowsService.OpenWindowAsync<LoaderView>(FindCurrentWindow());
+                    message = "Авторизация прошла успешно.";
+                    //_ = WindowsService.OpenWindowAsync<LoaderView>(FindCurrentWindow());
                     break;
                 default:
                     message = string.Empty;
                     break;
             }
 
-            //if (!string.IsNullOrEmpty(message))
-            //{
-            //    ShowMessage(message, "Успех", MessageBoxImage.Information);
-            //}
+            if (!string.IsNullOrEmpty(message))
+            {
+                ShowMessage(message, "Успех", MessageBoxImage.Information);
+            }
         }
 
         private Window? FindCurrentWindow()

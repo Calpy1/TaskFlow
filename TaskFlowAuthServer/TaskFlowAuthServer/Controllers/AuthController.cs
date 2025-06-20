@@ -19,9 +19,9 @@ namespace TaskFlowAuthServer.Controllers
 
 
         [HttpPost("register")]
-        public IActionResult Register([FromBody] User user)
+        public IActionResult Register([FromBody] RegisterData registerData)
         {
-            bool valid = _db.AddUser(user.Email, user.Password);
+            bool valid = _db.AddUser(registerData.Email, registerData.Password);
 
             if (valid)
             {
@@ -31,9 +31,14 @@ namespace TaskFlowAuthServer.Controllers
         }
 
         [HttpPost("login")]
-        public IActionResult Login([FromBody] User user)
+        public IActionResult Login([FromBody] LoginData loginData)
         {
-            bool valid = _db.LoginUser(user.Email, user.Password, user.UserToken, user.Mac);
+            bool valid = _db.LoginUser(loginData.Email, loginData.Password);
+
+            if (!string.IsNullOrEmpty(loginData.Email) && !string.IsNullOrEmpty(loginData.UserToken) && !string.IsNullOrEmpty(loginData.Mac))
+            {
+                _db.UpdateSession(loginData.Email, loginData.UserToken, loginData.Mac);
+            }
 
             if (valid)
             {
@@ -43,9 +48,14 @@ namespace TaskFlowAuthServer.Controllers
         }
 
         [HttpPost("quicklogin")]
-        public IActionResult QuickLogin([FromBody] User user)
+        public IActionResult QuickLogin([FromBody] QuickLoginData quickLoginData)
         {
-            bool valid = _db.QuickLogin(user.Email, user.UserToken, user.Mac);
+            if (_db.CheckUserExist(quickLoginData.Email))
+            {
+                _db.UpdateSession(quickLoginData.Email, quickLoginData.UserToken, quickLoginData.Mac);
+            }
+
+            bool valid = _db.QuickLogin(quickLoginData.Email, quickLoginData.UserToken, quickLoginData.Mac);
 
             if (valid)
             {

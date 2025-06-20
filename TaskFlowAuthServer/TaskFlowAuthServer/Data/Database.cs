@@ -13,7 +13,7 @@ namespace TaskFlowAuthServer.Data
             conn.Open();
         }
 
-        public bool LoginUser(string email, string password, string token, string mac)
+        public bool LoginUser(string email, string password)
         {
             const string query = "SELECT COUNT(*) FROM users WHERE email = @Email AND password_hash = @Password";
 
@@ -27,20 +27,21 @@ namespace TaskFlowAuthServer.Data
             {
                 return false;
             }
-
-            if (!string.IsNullOrEmpty(token))
-            {
-                const string updateTokenQuery = "UPDATE users SET token = @Token, mac = @Mac WHERE email = @Email";
-                using var updateCmd = new MySqlCommand(updateTokenQuery, conn);
-                updateCmd.Parameters.AddWithValue("@Token", token);
-                updateCmd.Parameters.AddWithValue("@Email", email);
-                updateCmd.Parameters.AddWithValue("@Mac", mac);
-
-                int rows = updateCmd.ExecuteNonQuery();
-
-                return rows > 0;
-            }
             return true;
+        }
+
+        public bool UpdateSession(string email, string token, string mac)
+        {
+            const string updateTokenQuery = "UPDATE users SET token = @Token, mac = @Mac WHERE email = @Email";
+
+            using var updateCmd = new MySqlCommand(updateTokenQuery, conn);
+            updateCmd.Parameters.AddWithValue("@Email", email);
+            updateCmd.Parameters.AddWithValue("@Token", token);
+            updateCmd.Parameters.AddWithValue("@Mac", mac);
+
+            int rows = updateCmd.ExecuteNonQuery();
+
+            return rows > 0;
         }
 
         public bool QuickLogin(string email, string token, string mac)
@@ -53,11 +54,7 @@ namespace TaskFlowAuthServer.Data
             mySqlCommand.Parameters.AddWithValue("@Mac", mac);
             using var result = mySqlCommand.ExecuteReader();
 
-            if (result.HasRows)
-            {
-                return true;
-            }
-            return false;
+            return result.HasRows;
         }
 
         public bool AddUser(string email, string password)
