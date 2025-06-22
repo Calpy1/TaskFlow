@@ -24,17 +24,20 @@
                 
                 <StackPanel Orientation="Horizontal" Grid.Row="1">
                     <Border x:Name="TaskPriority" Height="20" Background="{Binding PriorityColor, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" CornerRadius="4" Margin="0.5">
-                        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Text="{Binding TaskPriority, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="12" Foreground="White" FontFamily="Bahnschrift SemiLight SemiCondensed" Padding="5"/>
+                        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Text="{Binding TaskPriority, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="14" Foreground="White" FontFamily="Bahnschrift SemiLight SemiCondensed" Padding="5"/>
                     </Border>
-                    <Border x:Name="TaskStatus" Height="20" Width="65" Background="#FF41A45D" CornerRadius="4" Margin="1, 0, 0, 0">
-                        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Text="In progress" FontSize="12" Foreground="White" FontFamily="Bahnschrift SemiLight SemiCondensed"/>
+                    <Border x:Name="TaskStatus" Height="20" Background="{Binding StatusColor, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" CornerRadius="4" Margin="3, 0, 0, 0">
+                        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Text="{Binding TaskStatus, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="14" Foreground="White" FontFamily="Bahnschrift SemiLight SemiCondensed" Padding="5"/>
                     </Border>
                 </StackPanel>
 
                 <Border x:Name="TaskAuthor" VerticalAlignment="Bottom" HorizontalAlignment="Left" Grid.Row="2">
                     <TextBlock>
-                        <Run Text="Author:" FontSize="14" Foreground="Black" FontFamily="Bahnschrift SemiLight SemiCondensed"/>
+                        <Run Text="@" FontSize="14" Foreground="Black" FontFamily="Bahnschrift Light Condensed"/>
                         <Run Text="{Binding TaskAuthor, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="14" Foreground="Black" FontFamily="Bahnschrift SemiLight SemiCondensed"/>
+                        <Run Text="→" FontSize="14" Foreground="Black" FontFamily="Bahnschrift SemiLight SemiCondensed"/>
+                        <Run Text="Ivan G." FontSize="14" Foreground="Black" FontFamily="Bahnschrift SemiLight SemiCondensed"/>
+                        
                     </TextBlock>
                 </Border>
             </Grid>

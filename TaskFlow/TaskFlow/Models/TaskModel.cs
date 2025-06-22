@@ -14,6 +14,8 @@ namespace TaskFlow.Models
         private string _taskAuthor;
         private SolidColorBrush _taskPriorityColor;
         private string _taskPriorityText;
+        private SolidColorBrush _taskStatusColor;
+        private string _taskStatusText;
 
         public string TaskName
         {
@@ -75,6 +77,38 @@ namespace TaskFlow.Models
                 }
 
                 _taskPriorityText = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public SolidColorBrush StatusColor
+        {
+            get => _taskStatusColor;
+
+            set
+            {
+                if (_taskStatusColor == value)
+                {
+                    return;
+                }
+
+                _taskStatusColor = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string TaskStatus
+        {
+            get => _taskStatusText;
+
+            set
+            {
+                if (_taskStatusText == value)
+                {
+                    return;
+                }
+
+                _taskStatusText = value;
                 OnPropertyChanged();
             }
         }

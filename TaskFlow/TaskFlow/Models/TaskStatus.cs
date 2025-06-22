@@ -1,29 +1,30 @@
-﻿using System.Windows.Media;
+﻿using System.ComponentModel;
+using System.Windows.Media;
 
 namespace TaskFlow.Models
 {
-    public class TaskPriority
+    public class TaskStatus
     {
-        public enum Priority
+        public enum Status
         {
-            Low,
-            Medium,
-            High
+            Completed,
+            In_Progress,
+            Delayed
         }
 
-        public static SolidColorBrush ToBrush(Priority priority)
+        public static SolidColorBrush ToBrush(Status status)
         {
-            if (priority == Priority.High)
+            if (status == Status.Delayed)
             {
                 return new((Color)ColorConverter.ConvertFromString("#df2a2a"));
             }
 
-            if (priority == Priority.Medium)
+            if (status == Status.In_Progress)
             {
                 return new((Color)ColorConverter.ConvertFromString("#deb12f"));
             }
 
-            if (priority == Priority.Low)
+            if (status == Status.Completed)
             {
                 return new((Color)ColorConverter.ConvertFromString("#FF41A45D"));
             }

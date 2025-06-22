@@ -2,6 +2,8 @@
 using TaskFlow.Controls;
 using TaskFlow.Models;
 using Priority = TaskFlow.Models.TaskPriority.Priority;
+using TaskStatus = TaskFlow.Models.TaskStatus;
+using Status = TaskFlow.Models.TaskStatus.Status;
 
 namespace TaskFlow.Views
 {
@@ -16,22 +18,35 @@ namespace TaskFlow.Views
         {
             InitializeComponent();
 
-            AddTaskCard("Create some info additions", "I am", Priority.Medium);
-            AddTaskCard("Add user information", "I am", Priority.Low);
-            AddTaskCard("Check user information", "I am", Priority.High);
+            AddTaskCard("Create some info additions", "Ivan N.", Priority.High, Status.In_Progress);
         }
 
-        public void AddTaskCard(string taskName, string taskAuthor, Priority priority)
+        public void AddTaskCard(string taskName, string taskAuthor, Priority priority, Status status)
         {
-            var color = TaskPriority.ToBrush(priority);
+            var priorityColor = TaskPriority.ToBrush(priority);
+            var statusColor = TaskStatus.ToBrush(status);
+
+            string statusFormatted;
+
+            if (status == Status.In_Progress)
+            {
+                statusFormatted = "In Progress";
+            }
+            else
+            {
+                statusFormatted = status.ToString();
+            }
 
             var taskModel = new TaskModel()
             {
                 TaskName = taskName,
                 TaskAuthor = taskAuthor,
-                PriorityColor = color,
+                PriorityColor = priorityColor,
                 TaskPriority = priority.ToString(),
+                StatusColor = statusColor,
+                TaskStatus = statusFormatted
             };
+
 
             var card = new TaskCard()
             {
