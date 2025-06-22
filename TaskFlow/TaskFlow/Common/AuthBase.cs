@@ -21,7 +21,7 @@ namespace TaskFlow.Common
         private static readonly SolidColorBrush ErrorBrush = new((Color)ColorConverter.ConvertFromString("#FFE05D5D"));
         private static readonly SolidColorBrush NormalBrush = new((Color)ColorConverter.ConvertFromString("#FF5A6F86"));
         private static readonly SolidColorBrush TransparentBrush = new(Colors.Transparent);
-        private string _userMac = GetMac();
+        private static readonly string _userMac = GetMac();
 
         private static readonly HttpClient HttpClient = new()
         {
@@ -41,13 +41,13 @@ namespace TaskFlow.Common
                 }
                 else
                 {
-                    ShowMessage($"Сервер вернул ошибку: {response.StatusCode}", "Ошибка", MessageBoxImage.Warning);
+                    ShowMessage($"Сервер вернул ошибку: {response.StatusCode}", "Ошибка", MessageBoxImage.Warning); // debug
                     return false;
                 }
             }
             catch (HttpRequestException ex)
             {
-                ShowMessage($"Ошибка соединения с сервером: {ex.Message}", "Ошибка", MessageBoxImage.Error);
+                ShowMessage($"Ошибка соединения с сервером: {ex.Message}", "Ошибка", MessageBoxImage.Error); // debug
                 return false;
             }
         }
@@ -65,13 +65,13 @@ namespace TaskFlow.Common
                 }
                 else
                 {
-                    ShowMessage($"Сервер вернул ошибку: {response.StatusCode}", "Ошибка", MessageBoxImage.Warning);
+                    ShowMessage($"Сервер вернул ошибку: {response.StatusCode}", "Ошибка", MessageBoxImage.Warning); // debug
                     return false;
                 }
             }
             catch (HttpRequestException ex)
             {
-                ShowMessage($"Ошибка соединения с сервером: {ex.Message}", "Ошибка", MessageBoxImage.Error);
+                ShowMessage($"Ошибка соединения с сервером: {ex.Message}", "Ошибка", MessageBoxImage.Error); // debug
                 return false;
             }
         }
@@ -131,18 +131,18 @@ namespace TaskFlow.Common
                         SaveUserCredentials(email, userToken);
                     }
 
-                    ShowSuccessMessage(apiEndpoint);
+                    ShowSuccessMessage(apiEndpoint); // debug
                     return true;
                 }
                 else
                 {
-                    ShowMessage("Ошибка входа. Проверьте данные и попробуйте снова.", "Ошибка", MessageBoxImage.Warning);
+                    ShowMessage("Ошибка входа. Проверьте данные и попробуйте снова.", "Ошибка", MessageBoxImage.Warning); // debug
                     return false;
                 }
             }
             catch (Exception ex)
             {
-                ShowMessage($"Произошла ошибка: {ex.Message}", "Ошибка", MessageBoxImage.Error);
+                ShowMessage($"Произошла ошибка: {ex.Message}", "Ошибка", MessageBoxImage.Error); // debug
                 return false;
             }
         }
@@ -215,15 +215,27 @@ namespace TaskFlow.Common
             return Convert.ToBase64String(SHA256.HashData(Encoding.UTF8.GetBytes(password.Trim())));
         }
 
-        private static string GetMac()
+        public static string GetMac()
         {
             string mac = null;
 
             foreach (NetworkInterface networkInterface in NetworkInterface.GetAllNetworkInterfaces())
             {
-                if (networkInterface.NetworkInterfaceType == NetworkInterfaceType.Ethernet)
+                if (networkInterface.NetworkInterfaceType == NetworkInterfaceType.Ethernet || networkInterface.NetworkInterfaceType == NetworkInterfaceType.Wireless80211)
                 {
-                    mac = BitConverter.ToString(networkInterface.GetPhysicalAddress().GetAddressBytes());
+                    if (networkInterface.OperationalStatus != OperationalStatus.Up)
+                    {
+                        continue;
+                    }
+
+                    byte[] addressBytes = networkInterface.GetPhysicalAddress().GetAddressBytes();
+
+                    if (addressBytes.Length == 0)
+                    {
+                        continue;
+                    }
+
+                    mac = BitConverter.ToString(addressBytes).Replace("-", ":");
                     break;
                 }
             }
@@ -254,22 +266,22 @@ namespace TaskFlow.Common
             switch (apiEndpoint)
             {
                 case "api/auth/register":
-                    message = "Регистрация прошла успешно.";
-                    //_ = WindowsService.OpenWindowAsync<LoginView>(FindCurrentWindow());
+                    //message = "Регистрация прошла успешно.";
+                    _ = WindowsService.OpenWindowAsync<LoginView>(FindCurrentWindow());
                     break;
                 case "api/auth/login":
-                    message = "Авторизация прошла успешно.";
-                    //_ = WindowsService.OpenWindowAsync<LoaderView>(FindCurrentWindow());
+                    //message = "Авторизация прошла успешно.";
+                    _ = WindowsService.OpenWindowAsync<LoaderView>(FindCurrentWindow());
                     break;
                 default:
                     message = string.Empty;
                     break;
             }
 
-            if (!string.IsNullOrEmpty(message))
-            {
-                ShowMessage(message, "Успех", MessageBoxImage.Information);
-            }
+            //if (!string.IsNullOrEmpty(message))
+            //{
+            //    ShowMessage(message, "Успех", MessageBoxImage.Information);
+            //}
         }
 
         private Window? FindCurrentWindow()

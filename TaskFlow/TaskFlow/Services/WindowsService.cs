@@ -29,7 +29,7 @@ namespace TaskFlow.Services
         {
             var tcs = new TaskCompletionSource<bool>();
 
-            var fadeOut = new DoubleAnimation(1, 0, TimeSpan.FromMilliseconds(50));
+            var fadeOut = new DoubleAnimation(1, 0, TimeSpan.FromMilliseconds(60));
             fadeOut.Completed += (s, e) => tcs.SetResult(true);
 
             window.BeginAnimation(UIElement.OpacityProperty, fadeOut);
@@ -41,7 +41,7 @@ namespace TaskFlow.Services
         {
             var tcs = new TaskCompletionSource<bool>();
 
-            var fadeIn = new DoubleAnimation(0, 1, TimeSpan.FromMilliseconds(50));
+            var fadeIn = new DoubleAnimation(0, 1, TimeSpan.FromMilliseconds(60));
             fadeIn.Completed += (s, e) => tcs.SetResult(true);
 
             window.BeginAnimation(UIElement.OpacityProperty, fadeIn);

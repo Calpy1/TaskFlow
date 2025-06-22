@@ -13,7 +13,10 @@ public class UserData : BaseModel
         get => _id;
         set
         {
-            if (_id == value) return;
+            if (_id == value)
+            {
+                return;
+            }
 
             _id = value;
             OnPropertyChanged();
@@ -25,7 +28,10 @@ public class UserData : BaseModel
         get => _token;
         set
         {
-            if (_token == value) return;
+            if (_token == value)
+            {
+                return;
+            }
 
             _token = value;
             OnPropertyChanged();
@@ -37,7 +43,10 @@ public class UserData : BaseModel
         get => _email;
         set
         {
-            if (_email == value) return;
+            if (_email == value)
+            {
+                return;
+            }
 
             _email = value;
             OnPropertyChanged();
@@ -49,7 +58,10 @@ public class UserData : BaseModel
         get => _confirmEmail;
         set
         {
-            if (_confirmEmail == value) return;
+            if (_confirmEmail == value)
+            {
+                return;
+            }
 
             _confirmEmail = value;
             OnPropertyChanged();
@@ -61,7 +73,10 @@ public class UserData : BaseModel
         get => _pass;
         set
         {
-            if (_pass == value) return;
+            if (_pass == value)
+            {
+                return;
+            }
 
             _pass = value;
             OnPropertyChanged();

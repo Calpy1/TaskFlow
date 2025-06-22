@@ -9,11 +9,6 @@ namespace TaskFlow;
 /// </summary>
 public partial class MainWindow : Window
 {
-    private static readonly HttpClient _httpClient = new HttpClient
-    {
-        BaseAddress = new Uri("https://localhost:7034/")
-    };
-
     public MainWindow()
     {
         InitializeComponent();

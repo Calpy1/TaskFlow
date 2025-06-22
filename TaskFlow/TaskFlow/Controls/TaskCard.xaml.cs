@@ -3,11 +3,11 @@
 namespace TaskFlow.Controls
 {
     /// <summary>
-    /// Interaction logic for CustomLoader.xaml
+    /// Interaction logic for TaskCard.xaml
     /// </summary>
-    public partial class CustomLoader : UserControl
+    public partial class TaskCard : UserControl
     {
-        public CustomLoader()
+        public TaskCard()
         {
             InitializeComponent();
         }
