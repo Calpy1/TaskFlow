@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Media;
+﻿using System.Windows.Media;
 
 namespace TaskFlow.Models
 {
@@ -12,10 +6,13 @@ namespace TaskFlow.Models
     {
         private string _taskName;
         private string _taskAuthor;
+        private string _taskAssignee;
         private SolidColorBrush _taskPriorityColor;
         private string _taskPriorityText;
         private SolidColorBrush _taskStatusColor;
         private string _taskStatusText;
+        private string _createdDate;
+        private string _dueDate;
 
         public string TaskName
         {
@@ -29,6 +26,22 @@ namespace TaskFlow.Models
                 }
 
                 _taskName = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string TaskAssignee
+        {
+            get => _taskAssignee;
+
+            set
+            {
+                if (_taskAssignee == value)
+                {
+                    return;
+                }
+
+                _taskAssignee = value;
                 OnPropertyChanged();
             }
         }
@@ -109,6 +122,38 @@ namespace TaskFlow.Models
                 }
 
                 _taskStatusText = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string CreatedDate
+        {
+            get => _createdDate;
+
+            set
+            {
+                if (_createdDate == value)
+                {
+                    return;
+                }
+
+                _createdDate = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string DueDate
+        {
+            get => _dueDate;
+
+            set
+            {
+                if (_dueDate == value)
+                {
+                    return;
+                }
+
+                _dueDate = value;
                 OnPropertyChanged();
             }
         }

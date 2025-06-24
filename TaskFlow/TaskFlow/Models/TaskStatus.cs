@@ -1,5 +1,4 @@
-﻿using System.ComponentModel;
-using System.Windows.Media;
+﻿using System.Windows.Media;
 
 namespace TaskFlow.Models
 {

@@ -2,12 +2,14 @@
 using System.Windows.Input;
 using TaskFlow.Common;
 using TaskFlow.Models;
+using TaskFlow.Properties;
 using TaskFlow.Services;
 
 namespace TaskFlow.Views
 {
     public partial class RegisterView : Window
     {
+        private WindowPropertiesSaver _windowSaver;
         public UserData UserData { get; }
         private readonly AuthBase _auth;
 
@@ -24,6 +26,24 @@ namespace TaskFlow.Views
 
             this.MouseDown += Window_MouseDown;
             //this.KeyDown += Window_KeyDown;
+        }
+
+        protected override void OnSourceInitialized(EventArgs e)
+        {
+            base.OnSourceInitialized(e);
+
+            _windowSaver = new WindowPropertiesSaver(this, "LoginFormView", saveFullState: false);
+
+            _windowSaver.Load();
+
+            this.LocationChanged += (s, ev) => _windowSaver.Save();
+        }
+
+        protected override void OnClosing(System.ComponentModel.CancelEventArgs e)
+        {
+            base.OnClosing(e);
+
+            _windowSaver?.Save();
         }
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)

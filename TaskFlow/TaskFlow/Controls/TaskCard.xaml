@@ -17,13 +17,26 @@
 
                 <StackPanel x:Name="TaskDataStackPanel" Grid.Row="0">
                     <TextBlock x:Name="TaskName" VerticalAlignment="Center" HorizontalAlignment="Left" Text="{Binding TaskName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="0" FontSize="18" TextWrapping="Wrap" FontFamily="Bahnschrift SemiLight SemiCondensed"/>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock x:Name="TaskCreated" VerticalAlignment="Center" HorizontalAlignment="Left" Text="Created: 25.07.25" Grid.Row="1" FontSize="14" Foreground="#FF969696" FontFamily="Bahnschrift SemiLight SemiCondensed"/>
-                    </StackPanel>
+                    <Border HorizontalAlignment="Left" CornerRadius="10">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="1*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="1*"/>
+                                <RowDefinition Height="1*"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock Text="Created: " VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="14" Foreground="#FF969696" FontFamily="Bahnschrift SemiLight SemiCondensed" Grid.Row="0" Grid.Column="0"/>
+                            <TextBlock x:Name="TaskCreated" Text="{Binding CreatedDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" HorizontalAlignment="Right" FontSize="14" Foreground="#FF969696" FontFamily="Bahnschrift SemiLight SemiCondensed" Grid.Row="0" Grid.Column="2"/>
+                            <TextBlock Text="Due: " VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="14" Foreground="#FF969696" FontFamily="Bahnschrift SemiLight SemiCondensed" Grid.Row="1" Grid.Column="0"/>
+                            <TextBlock x:Name="TaskDue" Text="{Binding DueDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" HorizontalAlignment="Right" FontSize="14" Foreground="#FF969696" FontFamily="Bahnschrift SemiLight SemiCondensed" Grid.Row="1" Grid.Column="1"/>
+                        </Grid>
+                    </Border>
                 </StackPanel>
-                
+
                 <StackPanel Orientation="Horizontal" Grid.Row="1">
-                    <Border x:Name="TaskPriority" Height="20" Background="{Binding PriorityColor, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" CornerRadius="4" Margin="0.5">
+                    <Border x:Name="TaskPriority" Height="20" Background="{Binding PriorityColor, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" CornerRadius="4">
                         <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Text="{Binding TaskPriority, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="14" Foreground="White" FontFamily="Bahnschrift SemiLight SemiCondensed" Padding="5"/>
                     </Border>
                     <Border x:Name="TaskStatus" Height="20" Background="{Binding StatusColor, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" CornerRadius="4" Margin="3, 0, 0, 0">
@@ -33,11 +46,9 @@
 
                 <Border x:Name="TaskAuthor" VerticalAlignment="Bottom" HorizontalAlignment="Left" Grid.Row="2">
                     <TextBlock>
-                        <Run Text="@" FontSize="14" Foreground="Black" FontFamily="Bahnschrift Light Condensed"/>
-                        <Run Text="{Binding TaskAuthor, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="14" Foreground="Black" FontFamily="Bahnschrift SemiLight SemiCondensed"/>
+                        <Run Text="@" FontSize="14" Foreground="Black" FontFamily="Bahnschrift Light Condensed"/><Run Text="{Binding TaskAuthor, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="14" Foreground="Black" FontFamily="Bahnschrift SemiLight SemiCondensed"/>
                         <Run Text="→" FontSize="14" Foreground="Black" FontFamily="Bahnschrift SemiLight SemiCondensed"/>
-                        <Run Text="Ivan G." FontSize="14" Foreground="Black" FontFamily="Bahnschrift SemiLight SemiCondensed"/>
-                        
+                        <Run Text="{Binding TaskAssignee, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="14" Foreground="Black" FontFamily="Bahnschrift SemiLight SemiCondensed"/>
                     </TextBlock>
                 </Border>
             </Grid>
@@ -45,7 +56,7 @@
                 <DropShadowEffect Color="Black"
                                   ShadowDepth="0"
                                   BlurRadius="6"
-                                  Opacity="0.7" />
+                                  Opacity="0.6" />
             </Border.Effect>
         </Border>
     </Grid>

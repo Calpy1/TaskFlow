@@ -36,39 +36,23 @@
                                  StartPoint="0,0"
                                  EndPoint="1,1"
                                  MappingMode="RelativeToBoundingBox">
-                <GradientStop Color="#FF61A4EF" Offset="0.9"/>
-                <GradientStop Color="#FF0079FF" Offset="0.1"/>
+                <GradientStop Color="#FF5CA6F9" Offset="0.7"/>
+                <GradientStop Color="#FF0079FF" Offset="0.3"/>
             </LinearGradientBrush>
 
             <LinearGradientBrush x:Key="Gradient2"
                                  StartPoint="0,0"
                                  EndPoint="1,1"
                                  MappingMode="RelativeToBoundingBox">
-                <GradientStop Color="#FFAFD5FF" Offset="0.1"/>
-                <GradientStop Color="#FF549CEC" Offset="0.9"/>
+                <GradientStop Color="#FFAFD5FF" Offset="0.3"/>
+                <GradientStop Color="#FF5CA6F9" Offset="0.7"/>
             </LinearGradientBrush>
         </Grid.Resources>
 
-        <Path Stroke="{StaticResource Gradient1}"
-              StrokeThickness="14"
-              StrokeStartLineCap="Round"
-              StrokeEndLineCap="Flat">
-            <Path.Data>
-                <PathGeometry>
-                    <PathFigure StartPoint="100,170" IsClosed="False">
-                        <ArcSegment Point="100,30"
-                                    Size="70,70"
-                                    SweepDirection="Clockwise"
-                                    IsLargeArc="False"/>
-                    </PathFigure>
-                </PathGeometry>
-            </Path.Data>
-        </Path>
-
         <Path Stroke="{StaticResource Gradient2}"
               StrokeThickness="14"
-              StrokeStartLineCap="Round"
-              StrokeEndLineCap="Flat"
+              StrokeStartLineCap="Flat"
+              StrokeEndLineCap="Triangle"
               RenderTransformOrigin="0.5,0.5">
             <Path.RenderTransform>
                 <RotateTransform Angle="0"/>
@@ -77,6 +61,22 @@
                 <PathGeometry>
                     <PathFigure StartPoint="100,30" IsClosed="False">
                         <ArcSegment Point="100,170"
+                                    Size="70,70"
+                                    SweepDirection="Clockwise"
+                                    IsLargeArc="False"/>
+                    </PathFigure>
+                </PathGeometry>
+            </Path.Data>
+        </Path>
+
+        <Path Stroke="{StaticResource Gradient1}"
+              StrokeThickness="14"
+              StrokeStartLineCap="Triangle"
+              StrokeEndLineCap="Round">
+            <Path.Data>
+                <PathGeometry>
+                    <PathFigure StartPoint="100,170" IsClosed="False">
+                        <ArcSegment Point="100,30"
                                     Size="70,70"
                                     SweepDirection="Clockwise"
                                     IsLargeArc="False"/>
