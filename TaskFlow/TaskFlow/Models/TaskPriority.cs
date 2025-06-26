@@ -1,4 +1,5 @@
 ﻿using System.Windows.Media;
+using static TaskFlow.Models.TaskStatus;
 
 namespace TaskFlow.Models
 {
@@ -13,22 +14,21 @@ namespace TaskFlow.Models
 
         public static SolidColorBrush ToBrush(Priority priority)
         {
-            if (priority == Priority.High)
-            {
-                return new((Color)ColorConverter.ConvertFromString("#df2a2a"));
-            }
+            string color = "#F19CBB";
 
-            if (priority == Priority.Medium)
+            switch (priority)
             {
-                return new((Color)ColorConverter.ConvertFromString("#deb12f"));
+                case Priority.High:
+                    color = "#df2a2a";
+                    break;
+                case Priority.Medium:
+                    color = "#df2a2a";
+                    break;
+                case Priority.Low:
+                    color = "#df2a2a";
+                    break;
             }
-
-            if (priority == Priority.Low)
-            {
-                return new((Color)ColorConverter.ConvertFromString("#FF41A45D"));
-            }
-
-            return new SolidColorBrush(Colors.Pink);
+            return new((Color)ColorConverter.ConvertFromString(color));
         }
     }
 }

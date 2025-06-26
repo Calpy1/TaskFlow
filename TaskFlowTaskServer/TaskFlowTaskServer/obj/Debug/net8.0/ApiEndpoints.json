@@ -1,0 +1,28 @@
+[
+  {
+    "ContainingType": "TaskFlowTaskServer.Controllers.TaskController",
+    "Method": "CreateTaskAsync",
+    "RelativePath": "api/tasks/create",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "taskModel",
+        "Type": "TaskFlowTaskServer.Models.TaskModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "TaskFlowTaskServer.Controllers.TaskController",
+    "Method": "GetTasksController",
+    "RelativePath": "api/tasks/get-tasks",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  }
+]

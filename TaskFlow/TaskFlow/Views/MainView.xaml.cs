@@ -15,16 +15,15 @@ namespace TaskFlow.Views
     public partial class MainView : Window
     {
         private WindowPropertiesSaver _windowSaver;
+        private TasksHelper TasksHelper = new TasksHelper();
         public TaskModel TaskModel { get; set; }
 
         public MainView()
         {
             InitializeComponent();
 
-            AddTaskCard("First task", "Bobby A.", "Ivan G.", "14.08.25", Priority.High, Status.Completed);
-            AddTaskCard("First task", "Bobby A.", "Ivan G.", "14.08.25", Priority.High, Status.Completed);
-            AddTaskCard("First task", "Bobby A.", "Ivan G.", "14.08.25", Priority.High, Status.Completed);
-            AddTaskCard("First task", "Bobby A.", "Ivan G.", "14.08.25", Priority.High, Status.Completed);
+            //_ = AddTaskCard("First task", "FFFF.", "AAAAA", "14.08.25", Priority.High, Status.Completed);
+            _ = TasksHelper.GetTaskWithApiAsync();
         }
 
         protected override void OnSourceInitialized(EventArgs e)
@@ -47,7 +46,7 @@ namespace TaskFlow.Views
             _windowSaver?.Save();
         }
 
-        public void AddTaskCard(string taskName, string taskAuthor, string taskAssignee, string dueDate, Priority priority, Status status)
+        public async Task AddTaskCard(string taskName, string taskAuthor, string taskAssignee, string dueDate, Priority priority, Status status)
         {
             dueDate = DueDateParse(dueDate);
             var priorityColor = TaskPriority.ToBrush(priority);
@@ -69,21 +68,27 @@ namespace TaskFlow.Views
                 TaskName = taskName,
                 TaskAuthor = taskAuthor,
                 TaskAssignee = taskAssignee,
+                CreatedDate = DateTime.Now.ToString("dd.MM.yyyy"),
                 DueDate = dueDate,
                 PriorityColor = priorityColor,
                 TaskPriority = priority.ToString(),
                 StatusColor = statusColor,
                 TaskStatus = statusFormatted,
-                CreatedDate = DateTime.Now.ToString("dd.MM.yyyy"),
             };
 
 
-            var card = new TaskCard()
+            TasksHelper tasksHelper = new TasksHelper();
+            bool result = await tasksHelper.CreateWithApiAsync(taskModel);
+
+            if (result)
             {
-                DataContext = taskModel,
-            };
+                var card = new TaskCard()
+                {
+                    DataContext = taskModel,
+                };
 
-            CardsPanel.Children.Add(card);
+                CardsPanel.Children.Add(card);
+            }
         }
 
         public string DueDateParse(string dateString)

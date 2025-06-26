@@ -11,14 +11,14 @@ namespace TaskFlow.Views
     {
         private WindowPropertiesSaver _windowSaver;
         public UserData UserData { get; }
-        private readonly AuthBase _auth;
+        private readonly AuthHelper _auth;
 
         public RegisterView()
         {
             InitializeComponent();
             UserData = new UserData();
             DataContext = this;
-            _auth = new AuthBase();
+            _auth = new AuthHelper();
 
             _auth.AttachInputEventHandlers(EmailTextBox);
             _auth.AttachInputEventHandlers(ConfirmEmailTextBox);

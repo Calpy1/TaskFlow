@@ -1,8 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System.Security.Cryptography;
 using TaskFlowAuthServer.Models;
 using TaskFlowAuthServer.Data;
-using System.Text;
 
 namespace TaskFlowAuthServer.Controllers
 {
@@ -17,11 +15,10 @@ namespace TaskFlowAuthServer.Controllers
             _db = new Database();
         }
 
-
         [HttpPost("register")]
-        public IActionResult Register([FromBody] RegisterData registerData)
+        public async Task<IActionResult> Register([FromBody] RegisterModel registerModel)
         {
-            bool valid = _db.AddUser(registerData.Email, registerData.Password);
+            bool valid = await _db.AddUserAsync(registerModel.Email, registerModel.Password);
 
             if (valid)
             {
@@ -31,13 +28,13 @@ namespace TaskFlowAuthServer.Controllers
         }
 
         [HttpPost("login")]
-        public IActionResult Login([FromBody] LoginData loginData)
+        public async Task<IActionResult> Login([FromBody] LoginModel loginModel)
         {
-            bool valid = _db.LoginUser(loginData.Email, loginData.Password);
+            bool valid = await _db.LoginUserAsync(loginModel.Email, loginModel.Password);
 
-            if (!string.IsNullOrEmpty(loginData.Email) && !string.IsNullOrEmpty(loginData.UserToken) && !string.IsNullOrEmpty(loginData.Mac))
+            if (!string.IsNullOrEmpty(loginModel.Email) && !string.IsNullOrEmpty(loginModel.UserToken) && !string.IsNullOrEmpty(loginModel.Mac))
             {
-                _db.UpdateSession(loginData.Email, loginData.UserToken, loginData.Mac);
+                await _db.UpdateSessionAsync(loginModel.Email, loginModel.UserToken, loginModel.Mac);
             }
 
             if (valid)
@@ -48,14 +45,14 @@ namespace TaskFlowAuthServer.Controllers
         }
 
         [HttpPost("quicklogin")]
-        public IActionResult QuickLogin([FromBody] QuickLoginData quickLoginData)
+        public async Task<IActionResult> QuickLogin([FromBody] QuickLoginModel quickLoginModel)
         {
-            if (_db.CheckUserExist(quickLoginData.Email))
+            if (await _db.CheckUserExistAsync(quickLoginModel.Email))
             {
-                _db.UpdateSession(quickLoginData.Email, quickLoginData.UserToken, quickLoginData.Mac);
+                await _db.UpdateSessionAsync(quickLoginModel.Email, quickLoginModel.UserToken, quickLoginModel.Mac);
             }
 
-            bool valid = _db.QuickLogin(quickLoginData.Email, quickLoginData.UserToken, quickLoginData.Mac);
+            bool valid = await _db.QuickLoginAsync(quickLoginModel.Email, quickLoginModel.UserToken, quickLoginModel.Mac);
 
             if (valid)
             {

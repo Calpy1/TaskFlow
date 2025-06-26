@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "udsawxgzBqqpxmsZvFWefaSpiMowVnkLr/0Ax8Q6Q/o=",
+  "Source": "TaskFlowTaskServer",
+  "BasePath": "_content/TaskFlowTaskServer",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}

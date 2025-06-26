@@ -13,22 +13,21 @@ namespace TaskFlow.Models
 
         public static SolidColorBrush ToBrush(Status status)
         {
-            if (status == Status.Delayed)
-            {
-                return new((Color)ColorConverter.ConvertFromString("#df2a2a"));
-            }
+            string color = "#F19CBB";
 
-            if (status == Status.In_Progress)
+            switch (status)
             {
-                return new((Color)ColorConverter.ConvertFromString("#deb12f"));
+                case Status.Delayed:
+                    color = "#df2a2a";
+                    break;
+                case Status.In_Progress:
+                    color = "#df2a2a";
+                    break;
+                case Status.Completed:
+                    color = "#df2a2a";
+                    break;
             }
-
-            if (status == Status.Completed)
-            {
-                return new((Color)ColorConverter.ConvertFromString("#FF41A45D"));
-            }
-
-            return new SolidColorBrush(Colors.Pink);
+            return new((Color)ColorConverter.ConvertFromString(color));
         }
     }
 }

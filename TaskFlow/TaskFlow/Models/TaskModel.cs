@@ -1,4 +1,5 @@
-﻿using System.Windows.Media;
+﻿using System.Text.Json.Serialization;
+using System.Windows.Media;
 
 namespace TaskFlow.Models
 {
@@ -62,6 +63,7 @@ namespace TaskFlow.Models
             }
         }
 
+        [JsonIgnore]
         public SolidColorBrush PriorityColor
         {
             get => _taskPriorityColor;
@@ -94,6 +96,7 @@ namespace TaskFlow.Models
             }
         }
 
+        [JsonIgnore]
         public SolidColorBrush StatusColor
         {
             get => _taskStatusColor;
