@@ -37,10 +37,10 @@
                        Foreground="#FF5A6F86" VerticalAlignment="Center" FontSize="25" />
                 <controls:CustomTextBox x:Name="EmailTextBox" Text="{Binding UserData.Email, Mode=TwoWay}"
                                     PlaceholderText="Email" PlaceholderSymb="👤" />
-                <controls:CustomTextBox x:Name="ConfirmEmailTextBox" Text="{Binding UserData.ConfirmEmail, Mode=TwoWay}"
-                                    PlaceholderText="Confirm Email" PlaceholderSymb="👤" />
                 <controls:CustomTextBox x:Name="PasswordTextBox" Text="{Binding UserData.Pass, Mode=TwoWay}"
                                     PlaceholderText="Password" PlaceholderSymb="🔑" />
+                <controls:CustomTextBox x:Name="ConfirmPassTextBox" Text="{Binding UserData.ConfirmPass, Mode=TwoWay}"
+                                    PlaceholderText="Confirm password" PlaceholderSymb="🔑" />
 
                 <Border Background="#FF5A6F86" Height="2" HorizontalAlignment="Stretch" Margin="2, 7, 2, 0"
                     CornerRadius="1" />

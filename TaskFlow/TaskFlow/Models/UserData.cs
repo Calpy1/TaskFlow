@@ -5,7 +5,7 @@ public class UserData : BaseModel
     private string _id;
     private string _token;
     private string _email;
-    private string _confirmEmail;
+    private string _confirmPass;
     private string _pass;
 
     public string Id
@@ -53,17 +53,17 @@ public class UserData : BaseModel
         }
     }
 
-    public string ConfirmEmail
+    public string ConfirmPass
     {
-        get => _confirmEmail;
+        get => _confirmPass;
         set
         {
-            if (_confirmEmail == value)
+            if (_confirmPass == value)
             {
                 return;
             }
 
-            _confirmEmail = value;
+            _confirmPass = value;
             OnPropertyChanged();
         }
     }

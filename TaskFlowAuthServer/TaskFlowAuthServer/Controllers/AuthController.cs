@@ -9,6 +9,7 @@ namespace TaskFlowAuthServer.Controllers
     public class AuthController : ControllerBase
     {
         private readonly Database _db;
+        private readonly LoginModel _loginModel = new LoginModel();
 
         public AuthController()
         {
@@ -16,9 +17,9 @@ namespace TaskFlowAuthServer.Controllers
         }
 
         [HttpPost("register")]
-        public async Task<IActionResult> Register([FromBody] RegisterModel registerModel)
+        public async Task<IActionResult> Register([FromBody] RegisterModel registerModel) // login, email
         {
-            bool valid = await _db.AddUserAsync(registerModel.Email, registerModel.Password);
+            bool valid = await _loginModel.AddUserAsync(registerModel);
 
             if (valid)
             {
@@ -30,11 +31,11 @@ namespace TaskFlowAuthServer.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] LoginModel loginModel)
         {
-            bool valid = await _db.LoginUserAsync(loginModel.Email, loginModel.Password);
+            bool valid = await _loginModel.CheckLoginCredentials(loginModel); // email, password
 
             if (!string.IsNullOrEmpty(loginModel.Email) && !string.IsNullOrEmpty(loginModel.UserToken) && !string.IsNullOrEmpty(loginModel.Mac))
             {
-                await _db.UpdateSessionAsync(loginModel.Email, loginModel.UserToken, loginModel.Mac);
+                await _loginModel.UpdateSessionAsync(loginModel);
             }
 
             if (valid)
@@ -45,14 +46,9 @@ namespace TaskFlowAuthServer.Controllers
         }
 
         [HttpPost("quicklogin")]
-        public async Task<IActionResult> QuickLogin([FromBody] QuickLoginModel quickLoginModel)
+        public async Task<IActionResult> QuickLogin([FromBody] QuickLoginModel quickLoginModel) // email, token, mac 
         {
-            if (await _db.CheckUserExistAsync(quickLoginModel.Email))
-            {
-                await _db.UpdateSessionAsync(quickLoginModel.Email, quickLoginModel.UserToken, quickLoginModel.Mac);
-            }
-
-            bool valid = await _db.QuickLoginAsync(quickLoginModel.Email, quickLoginModel.UserToken, quickLoginModel.Mac);
+            bool valid = await _loginModel.CheckQuickLoginCredentials(quickLoginModel);
 
             if (valid)
             {

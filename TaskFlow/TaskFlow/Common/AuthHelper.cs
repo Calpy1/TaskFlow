@@ -97,14 +97,14 @@ namespace TaskFlow.Common
             return allValid;
         }
 
-        public bool ValidateEmailMatch(CustomTextBox emailField, CustomTextBox confirmEmailField)
+        public bool ValidateEmailMatch(CustomTextBox passField, CustomTextBox confirmPassField)
         {
-            if (!string.IsNullOrWhiteSpace(emailField.Text) &&
-                !string.IsNullOrWhiteSpace(confirmEmailField.Text) &&
-                !emailField.Text.Equals(confirmEmailField.Text, StringComparison.OrdinalIgnoreCase))
+            if (!string.IsNullOrWhiteSpace(passField.Text) &&
+                !string.IsNullOrWhiteSpace(confirmPassField.Text) &&
+                !passField.Text.Equals(confirmPassField.Text, StringComparison.OrdinalIgnoreCase))
             {
-                MarkFieldAsError(emailField);
-                MarkFieldAsError(confirmEmailField);
+                MarkFieldAsError(passField);
+                MarkFieldAsError(confirmPassField);
                 return false;
             }
             return true;

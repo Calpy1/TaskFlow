@@ -21,7 +21,7 @@ namespace TaskFlow.Views
             _auth = new AuthHelper();
 
             _auth.AttachInputEventHandlers(EmailTextBox);
-            _auth.AttachInputEventHandlers(ConfirmEmailTextBox);
+            _auth.AttachInputEventHandlers(ConfirmPassTextBox);
             _auth.AttachInputEventHandlers(PasswordTextBox);
 
             this.MouseDown += Window_MouseDown;
@@ -65,12 +65,12 @@ namespace TaskFlow.Views
         {
             if (validateInputs)
             {
-                if (!_auth.ValidateRequiredFields(EmailTextBox, ConfirmEmailTextBox, PasswordTextBox))
+                if (!_auth.ValidateRequiredFields(EmailTextBox, ConfirmPassTextBox, PasswordTextBox))
                 {
                     return;
                 }
 
-                if (!_auth.ValidateEmailMatch(EmailTextBox, ConfirmEmailTextBox))
+                if (!_auth.ValidateEmailMatch(PasswordTextBox, ConfirmPassTextBox))
                 {
                     return;
                 }
