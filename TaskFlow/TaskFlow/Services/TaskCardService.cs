@@ -11,7 +11,7 @@ namespace TaskFlow.Services
     {
         private readonly CreateTaskService _createService = new CreateTaskService();
 
-        public async Task<TaskCard?> CreateCardAsync(string taskName, string author, string assignee, string dueDateRaw, Priority priority, Status status)
+        public async Task<TaskCard> CreateCardAsync(string taskName, string author, string assignee, string dueDateRaw, Priority priority, Status status)
         {
             var dueDate = ParseDate(dueDateRaw);
             var priorityColor = TaskPriority.ToBrush(priority);
@@ -32,8 +32,8 @@ namespace TaskFlow.Services
                 TaskStatus = statusFormatted
             };
 
-            bool success = await _createService.CreateWithApiAsync(model);
-            if (!success) return null;
+            //bool success = await _createService.CreateWithApiAsync(model);
+            //if (!success) return null;
 
             var card = new TaskCard
             {

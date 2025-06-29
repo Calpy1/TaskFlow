@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TaskFlowTaskServer")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ec7129d0a87c13a3adf7c92282a030145c89e57b")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+630ea24b4fa3915b081d83f07f65afbeba7ef7b5")]
 [assembly: System.Reflection.AssemblyProductAttribute("TaskFlowTaskServer")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TaskFlowTaskServer")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

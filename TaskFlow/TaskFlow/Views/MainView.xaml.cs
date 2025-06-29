@@ -16,14 +16,27 @@ namespace TaskFlow.Views
     public partial class MainView : Window
     {
         private WindowPropertiesSaver _windowSaver;
+        private GetTaskService _taskService = new GetTaskService();
         private readonly TaskCardService _cardService = new TaskCardService();
 
         public MainView()
         {
             InitializeComponent();
 
-            //_ = AddTaskCard("First task", "FFFF.", "AAAAA", "14.08.25", Priority.High, Status.Completed);
-            //_ = _taskService.GetTaskWithApiAsync();
+            _ = AddTaskCard("First task", "Alexander", "Alexander", "14.08.25", Priority.High, Status.Completed);
+            LoadTasks();
+        }
+
+        public async void LoadTasks()
+        {
+            var cards = await _taskService.GetTasksWithApiAsync();
+            if (cards != null && cards.Count > 0)
+            {
+                foreach (var card in cards)
+                {
+                    CardsPanel.Children.Add(card);
+                }
+            }
         }
 
         protected override void OnSourceInitialized(EventArgs e)
@@ -44,17 +57,21 @@ namespace TaskFlow.Views
             _windowSaver?.Save();
         }
 
-        public async Task AddTaskCard(string taskName, string taskAuthor, string taskAssignee, string dueDate, Priority priority, Status status)
+        public async Task AddTaskCard(string taskName, string taskAuthor, string taskAssignee, string dueDate, Priority priority, Status status) // Test
         {
-            var card = await _cardService.CreateCardAsync(taskName, taskAuthor, taskAssignee, dueDate, priority, status);
-            if (card != null)
+            var task = new TaskModel()
             {
-                CardsPanel.Children.Add(card);
-            }
-            else
-            {
-                MessageBox.Show("Не удалось создать задачу.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
+                TaskName = taskName,
+                TaskAuthor = taskAuthor,
+                TaskAssignee = taskAssignee,
+                CreatedDate = DateTime.Now.ToString("dd.MM.yy"),
+                DueDate = dueDate,
+                TaskPriority = priority.ToString(),
+                TaskStatus = status.ToString(),
+                
+            };
+            CreateTaskService createTaskService = new CreateTaskService();
+            await createTaskService.CreateWithApiAsync(task);
         }
     }
 }
