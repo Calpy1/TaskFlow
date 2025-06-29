@@ -7,7 +7,7 @@ using TaskFlow.Services;
 
 namespace TaskFlow.Views
 {
-    public partial class LoginView : Window
+    public partial class LoginView : Window // TODO: Разделить бизнес-логику и UI по SRP
     {
         private WindowPropertiesSaver _windowSaver;
         private UIErrorService _errorService = new UIErrorService();

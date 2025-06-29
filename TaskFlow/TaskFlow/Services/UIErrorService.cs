@@ -24,7 +24,7 @@ namespace TaskFlow.Services
             textBox.GotFocus += ClearErrorVisuals;
         }
 
-        private void MarkFieldAsError(CustomTextBox field)
+        public static void MarkFieldAsError(CustomTextBox field)
         {
             field.OuterBorder.BorderBrush = ErrorBrush;
             field.PlaceholderTextBlock.Foreground = ErrorBrush;

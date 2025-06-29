@@ -7,7 +7,7 @@ using TaskFlow.Services;
 
 namespace TaskFlow.Views
 {
-    public partial class RegisterView : Window
+    public partial class RegisterView : Window // TODO: Разделить бизнес-логику и UI по SRP
     {
         private WindowPropertiesSaver _windowSaver;
         UIErrorService _errorService = new UIErrorService();

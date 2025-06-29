@@ -6,24 +6,25 @@ using TaskStatus = TaskFlow.Models.TaskStatus;
 using Status = TaskFlow.Models.TaskStatus.Status;
 using TaskFlow.Properties;
 using TaskFlow.Common;
+using TaskFlow.Services;
 
 namespace TaskFlow.Views
 {
     /// <summary>
     /// Interaction logic for MainView.xaml
     /// </summary>
-    public partial class MainView : Window
+    public partial class MainView : Window // TODO: Разделить бизнес-логику и UI по SRP
     {
         private WindowPropertiesSaver _windowSaver;
-        private TasksHelper TasksHelper = new TasksHelper();
+        private GetTaskService _taskService = new GetTaskService();
         public TaskModel TaskModel { get; set; }
 
         public MainView()
         {
             InitializeComponent();
 
-            //_ = AddTaskCard("First task", "FFFF.", "AAAAA", "14.08.25", Priority.High, Status.Completed);
-            _ = TasksHelper.GetTaskWithApiAsync();
+            //_ = AddTaskCard("First task", "FFFF.", "AAAAA", "14.08.25", Priority.High, Status.Completed); 
+            _ = _taskService.GetTaskWithApiAsync();
         }
 
         protected override void OnSourceInitialized(EventArgs e)
@@ -77,8 +78,9 @@ namespace TaskFlow.Views
             };
 
 
-            TasksHelper tasksHelper = new TasksHelper();
-            bool result = await tasksHelper.CreateWithApiAsync(taskModel);
+            //TasksHelper tasksHelper = new TasksHelper();
+            CreateTaskService createTaskService = new CreateTaskService();
+            bool result = await createTaskService.CreateWithApiAsync(taskModel);
 
             if (result)
             {
