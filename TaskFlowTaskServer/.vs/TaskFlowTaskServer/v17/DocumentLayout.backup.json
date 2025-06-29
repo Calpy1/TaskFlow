@@ -3,10 +3,6 @@
   "WorkspaceRootPath": "C:\\Users\\novos\\Desktop\\TaskFlow\\TaskFlowTaskServer\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{8D3E8C46-BA88-4664-96AD-25D78AD3D14F}|TaskFlowTaskServer\\TaskFlowTaskServer.csproj|c:\\users\\novos\\desktop\\taskflow\\taskflowtaskserver\\taskflowtaskserver\\controllers\\taskcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8D3E8C46-BA88-4664-96AD-25D78AD3D14F}|TaskFlowTaskServer\\TaskFlowTaskServer.csproj|solutionrelative:taskflowtaskserver\\controllers\\taskcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{8D3E8C46-BA88-4664-96AD-25D78AD3D14F}|TaskFlowTaskServer\\TaskFlowTaskServer.csproj|c:\\users\\novos\\desktop\\taskflow\\taskflowtaskserver\\taskflowtaskserver\\data\\database.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{8D3E8C46-BA88-4664-96AD-25D78AD3D14F}|TaskFlowTaskServer\\TaskFlowTaskServer.csproj|solutionrelative:taskflowtaskserver\\data\\database.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -17,6 +13,10 @@
     {
       "AbsoluteMoniker": "D:0:0:{8D3E8C46-BA88-4664-96AD-25D78AD3D14F}|TaskFlowTaskServer\\TaskFlowTaskServer.csproj|c:\\users\\novos\\desktop\\taskflow\\taskflowtaskserver\\taskflowtaskserver\\models\\taskmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{8D3E8C46-BA88-4664-96AD-25D78AD3D14F}|TaskFlowTaskServer\\TaskFlowTaskServer.csproj|solutionrelative:taskflowtaskserver\\models\\taskmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8D3E8C46-BA88-4664-96AD-25D78AD3D14F}|TaskFlowTaskServer\\TaskFlowTaskServer.csproj|c:\\users\\novos\\desktop\\taskflow\\taskflowtaskserver\\taskflowtaskserver\\controllers\\taskcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8D3E8C46-BA88-4664-96AD-25D78AD3D14F}|TaskFlowTaskServer\\TaskFlowTaskServer.csproj|solutionrelative:taskflowtaskserver\\controllers\\taskcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{8D3E8C46-BA88-4664-96AD-25D78AD3D14F}|TaskFlowTaskServer\\TaskFlowTaskServer.csproj|c:\\users\\novos\\desktop\\taskflow\\taskflowtaskserver\\taskflowtaskserver\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
@@ -38,7 +38,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Document",
@@ -54,16 +54,15 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "BaseModel.cs",
               "DocumentMoniker": "C:\\Users\\novos\\Desktop\\TaskFlow\\TaskFlowTaskServer\\TaskFlowTaskServer\\Models\\BaseModel.cs",
               "RelativeDocumentMoniker": "TaskFlowTaskServer\\Models\\BaseModel.cs",
               "ToolTip": "C:\\Users\\novos\\Desktop\\TaskFlow\\TaskFlowTaskServer\\TaskFlowTaskServer\\Models\\BaseModel.cs",
               "RelativeToolTip": "TaskFlowTaskServer\\Models\\BaseModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAMwBcAAAAgAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-25T21:34:36.714Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-25T21:34:36.714Z"
             },
             {
               "$type": "Document",
@@ -79,32 +78,32 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "Database.cs",
               "DocumentMoniker": "C:\\Users\\novos\\Desktop\\TaskFlow\\TaskFlowTaskServer\\TaskFlowTaskServer\\Data\\Database.cs",
               "RelativeDocumentMoniker": "TaskFlowTaskServer\\Data\\Database.cs",
               "ToolTip": "C:\\Users\\novos\\Desktop\\TaskFlow\\TaskFlowTaskServer\\TaskFlowTaskServer\\Data\\Database.cs",
               "RelativeToolTip": "TaskFlowTaskServer\\Data\\Database.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAAjAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACcAAAAeAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-25T16:34:58.863Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 2,
               "Title": "TaskModel.cs",
               "DocumentMoniker": "C:\\Users\\novos\\Desktop\\TaskFlow\\TaskFlowTaskServer\\TaskFlowTaskServer\\Models\\TaskModel.cs",
               "RelativeDocumentMoniker": "TaskFlowTaskServer\\Models\\TaskModel.cs",
               "ToolTip": "C:\\Users\\novos\\Desktop\\TaskFlow\\TaskFlowTaskServer\\TaskFlowTaskServer\\Models\\TaskModel.cs",
               "RelativeToolTip": "TaskFlowTaskServer\\Models\\TaskModel.cs",
-              "ViewState": "AgIAAB0AAAAAAAAAAAAuwDQAAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAABkAAAAAAAAAAAAgwEYAAAApAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-25T16:31:00.812Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 3,
               "Title": "TaskController.cs",
               "DocumentMoniker": "C:\\Users\\novos\\Desktop\\TaskFlow\\TaskFlowTaskServer\\TaskFlowTaskServer\\Controllers\\TaskController.cs",
               "RelativeDocumentMoniker": "TaskFlowTaskServer\\Controllers\\TaskController.cs",
@@ -112,8 +111,7 @@
               "RelativeToolTip": "TaskFlowTaskServer\\Controllers\\TaskController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-25T16:27:58.494Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-25T16:27:58.494Z"
             },
             {
               "$type": "Document",

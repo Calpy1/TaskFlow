@@ -16,22 +16,22 @@ namespace TaskFlow.Services
 
                 if (taskList.Count > 0)
                 {
-                    foreach (var task in taskList)
-                    {
-                        MessageBox.Show($"{task.TaskName}\n{task.TaskAuthor}\n{task.TaskAssignee}\n{task.CreatedDate}\n{task.DueDate}\n{task.TaskPriority}\n{task.TaskStatus}");
-                    }
+                    //foreach (var task in taskList)
+                    //{
+                    //    MessageBox.Show($"{task.TaskName}\n{task.TaskAuthor}\n{task.TaskAssignee}\n{task.CreatedDate}\n{task.DueDate}\n{task.TaskPriority}\n{task.TaskStatus}"); // debug
+                    //}
 
                     return taskList;
                 }
                 else
                 {
-                    MessageBox.Show("Сервер вернул пустой список задач.");
+                    //MessageBox.Show("Сервер вернул пустой список задач."); // debug
                     return new List<TaskModel>();
                 }
             }
             catch (HttpRequestException ex)
             {
-                ShowMessage($"Ошибка соединения с сервером: {ex.Message}", "Ошибка", MessageBoxImage.Error); // debug
+                //ShowMessage($"Ошибка соединения с сервером: {ex.Message}", "Ошибка", MessageBoxImage.Error); // debug
                 return null;
             }
         }

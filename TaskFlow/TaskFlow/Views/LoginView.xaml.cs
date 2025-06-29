@@ -1,6 +1,8 @@
 ﻿using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 using TaskFlow.Common;
+using TaskFlow.Controls;
 using TaskFlow.Models;
 using TaskFlow.Properties;
 using TaskFlow.Services;
@@ -12,7 +14,6 @@ namespace TaskFlow.Views
         private WindowPropertiesSaver _windowSaver;
         private UIErrorService _errorService = new UIErrorService();
         private AuthService _authService = new AuthService();
-        private ValidationService _validationService = new ValidationService();
         public UserData UserData { get; }
 
         public LoginView()
@@ -73,25 +74,15 @@ namespace TaskFlow.Views
         private void ResultButton_Click(object sender, RoutedEventArgs e)
         {
             e.Handled = true;
-            AttemptLogin(validateInputs: true);
-        }
 
-        private async void AttemptLogin(bool validateInputs)
-        {
-            if (validateInputs)
+            CustomTextBox[] customTextBoxes = new[]
             {
-                if (!_validationService.ValidateRequiredFields(EmailTextBox, PasswordTextBox))
-                {
-                    return;
-                }
-            }
+                EmailTextBox,
+                PasswordTextBox
+            };
 
-            string email = EmailTextBox.TextBoxInput.Text;
-            string password = PasswordTextBox.TextBoxInput.Text;
-            bool hasError = string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(password);
-            bool rememberUser = CheckBoxRememberMe.IsChecked == true;
 
-            await _authService.AuthenticateUserAsync(hasError, email, password, rememberUser, "api/auth/login");
+            _ = _authService.AttemptLoginAsync(validateInputs: true, customTextBoxes, CheckBoxRememberMe);
         }
 
         private void HaveAccountButton_Click(object sender, RoutedEventArgs e)

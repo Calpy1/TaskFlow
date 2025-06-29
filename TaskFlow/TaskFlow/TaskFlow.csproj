@@ -19,10 +19,6 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Folder Include="ViewModels\" />
-    </ItemGroup>
-
-    <ItemGroup>
       <PackageReference Include="System.Management" Version="9.0.6" />
     </ItemGroup>
 
@@ -39,6 +35,11 @@
         <Generator>SettingsSingleFileGenerator</Generator>
         <LastGenOutput>Settings.Designer.cs</LastGenOutput>
       </None>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Handlers\" />
+      <Folder Include="ViewModels\" />
     </ItemGroup>
 
 </Project>

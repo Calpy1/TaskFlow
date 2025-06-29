@@ -4,11 +4,14 @@ using System.Text.Json;
 using System.Windows;
 using TaskFlow.Models;
 using System.IO;
+using TaskFlow.Controls;
+using System.Windows.Controls;
 
 namespace TaskFlow.Services
 {
     public class AuthService
     {
+        private ValidationService _validationService = new ValidationService();
         private static readonly string _userMac = SecurityService.GetMac();
 
         private static readonly HttpClient HttpClient = new()
@@ -53,13 +56,13 @@ namespace TaskFlow.Services
                 }
                 else
                 {
-                    ShowMessage($"Сервер вернул ошибку: {response.StatusCode}", "Ошибка", MessageBoxImage.Warning); // debug
+                    //ShowMessage($"Сервер вернул ошибку: {response.StatusCode}", "Ошибка", MessageBoxImage.Warning); // debug
                     return false;
                 }
             }
             catch (HttpRequestException ex)
             {
-                ShowMessage($"Ошибка соединения с сервером: {ex.Message}", "Ошибка", MessageBoxImage.Error); // debug
+                //ShowMessage($"Ошибка соединения с сервером: {ex.Message}", "Ошибка", MessageBoxImage.Error); // debug
                 return false;
             }
         }
@@ -85,18 +88,18 @@ namespace TaskFlow.Services
                         CredentialsStorageService.SaveUserCredentials(email, userToken);
                     }
 
-                    NavigationService.ShowSuccessMessage(apiEndpoint); // debug
+                    NavigationService.OpenNextWinow(apiEndpoint);
                     return true;
                 }
                 else
                 {
-                    ShowMessage("Ошибка входа. Проверьте данные и попробуйте снова.", "Ошибка", MessageBoxImage.Warning); // debug
+                    //ShowMessage("Ошибка входа. Проверьте данные и попробуйте снова.", "Ошибка", MessageBoxImage.Warning); // debug
                     return false;
                 }
             }
             catch (Exception ex)
             {
-                ShowMessage($"Произошла ошибка: {ex.Message}", "Ошибка", MessageBoxImage.Error); // debug
+                //ShowMessage($"Произошла ошибка: {ex.Message}", "Ошибка", MessageBoxImage.Error); // debug
                 return false;
             }
         }
@@ -125,6 +128,56 @@ namespace TaskFlow.Services
             {
                 return false;
             }
+        }
+
+        public async Task AttemptLoginAsync(bool validateInputs, CustomTextBox[] fields, CheckBox checkBox)
+        {
+            var emailTextBox = fields[0];
+            var passwordTextBox = fields[1];
+
+            if (validateInputs)
+            {
+                if (!_validationService.ValidateRequiredFields(emailTextBox, passwordTextBox))
+                {
+                    return;
+                }
+            }
+
+            string email = emailTextBox.TextBoxInput.Text;
+            string password = passwordTextBox.TextBoxInput.Text;
+            bool hasError = string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(password);
+            bool rememberUser = checkBox.IsChecked == true;
+
+            await AuthenticateUserAsync(hasError, email, password, rememberUser, "api/auth/login");
+        }
+
+        public async Task AttemptRegisterAsync(bool validateInputs, CustomTextBox[] fields)
+        {
+            ValidationService validationService = new ValidationService();
+            AuthService authService = new AuthService();
+
+            var emailTextBox = fields[0];
+            var confirmPasswordTextBox = fields[1];
+            var passwordTextBox = fields[2];
+
+            if (validateInputs)
+            {
+                if (!validationService.ValidateRequiredFields(emailTextBox, confirmPasswordTextBox, passwordTextBox))
+                {
+                    return;
+                }
+
+                if (!validationService.ValidateEmailMatch(passwordTextBox, confirmPasswordTextBox))
+                {
+                    return;
+                }
+            }
+
+            string email = emailTextBox.TextBoxInput.Text;
+            string password = passwordTextBox.TextBoxInput.Text;
+            bool hasError = string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(password);
+
+            await authService.AuthenticateUserAsync(hasError, email, password, rememberMe: false, "api/auth/register");
         }
 
         private static void ShowMessage(string text, string caption, MessageBoxImage icon)

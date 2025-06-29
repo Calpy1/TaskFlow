@@ -13,95 +13,47 @@ namespace TaskFlow.Views
     /// <summary>
     /// Interaction logic for MainView.xaml
     /// </summary>
-    public partial class MainView : Window // TODO: Разделить бизнес-логику и UI по SRP
+    public partial class MainView : Window
     {
         private WindowPropertiesSaver _windowSaver;
-        private GetTaskService _taskService = new GetTaskService();
-        public TaskModel TaskModel { get; set; }
+        private readonly TaskCardService _cardService = new TaskCardService();
 
         public MainView()
         {
             InitializeComponent();
 
-            //_ = AddTaskCard("First task", "FFFF.", "AAAAA", "14.08.25", Priority.High, Status.Completed); 
-            _ = _taskService.GetTaskWithApiAsync();
+            //_ = AddTaskCard("First task", "FFFF.", "AAAAA", "14.08.25", Priority.High, Status.Completed);
+            //_ = _taskService.GetTaskWithApiAsync();
         }
 
         protected override void OnSourceInitialized(EventArgs e)
         {
             base.OnSourceInitialized(e);
 
-
             _windowSaver = new WindowPropertiesSaver(this, "MainView");
             _windowSaver.Load();
 
-            this.LocationChanged += (s, ev) => _windowSaver.Save();
-            this.SizeChanged += (s, ev) => _windowSaver.Save();
-            this.StateChanged += (s, ev) => _windowSaver.Save();
+            LocationChanged += (s, ev) => _windowSaver.Save();
+            SizeChanged += (s, ev) => _windowSaver.Save();
+            StateChanged += (s, ev) => _windowSaver.Save();
         }
 
         protected override void OnClosing(System.ComponentModel.CancelEventArgs e)
         {
             base.OnClosing(e);
-
             _windowSaver?.Save();
         }
 
         public async Task AddTaskCard(string taskName, string taskAuthor, string taskAssignee, string dueDate, Priority priority, Status status)
         {
-            dueDate = DueDateParse(dueDate);
-            var priorityColor = TaskPriority.ToBrush(priority);
-            var statusColor = TaskStatus.ToBrush(status);
-
-            string statusFormatted;
-
-            if (status == Status.In_Progress)
+            var card = await _cardService.CreateCardAsync(taskName, taskAuthor, taskAssignee, dueDate, priority, status);
+            if (card != null)
             {
-                statusFormatted = "In Progress";
-            }
-            else
-            {
-                statusFormatted = status.ToString();
-            }
-
-            TaskModel taskModel = new TaskModel()
-            {
-                TaskName = taskName,
-                TaskAuthor = taskAuthor,
-                TaskAssignee = taskAssignee,
-                CreatedDate = DateTime.Now.ToString("dd.MM.yyyy"),
-                DueDate = dueDate,
-                PriorityColor = priorityColor,
-                TaskPriority = priority.ToString(),
-                StatusColor = statusColor,
-                TaskStatus = statusFormatted,
-            };
-
-
-            //TasksHelper tasksHelper = new TasksHelper();
-            CreateTaskService createTaskService = new CreateTaskService();
-            bool result = await createTaskService.CreateWithApiAsync(taskModel);
-
-            if (result)
-            {
-                var card = new TaskCard()
-                {
-                    DataContext = taskModel,
-                };
-
                 CardsPanel.Children.Add(card);
             }
-        }
-
-        public string DueDateParse(string dateString)
-        {
-            if (DateTime.TryParse(dateString, out DateTime dueDate))
-            {
-                return dueDate.ToString("dd.MM.yyyy");
-            }
             else
             {
-                return "Invalid date format";
+                MessageBox.Show("Не удалось создать задачу.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
     }

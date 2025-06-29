@@ -14,18 +14,18 @@ namespace TaskFlow.Services
                 var response = await HttpClient.PostAsJsonAsync("api/tasks/create", task);
                 if (response.IsSuccessStatusCode)
                 {
-                    ShowMessage($"Успех: {response.StatusCode}", "Успех", MessageBoxImage.Warning); // debug
+                    //ShowMessage($"Успех: {response.StatusCode}", "Успех", MessageBoxImage.Warning); // debug
                     return true;
                 }
                 else
                 {
-                    ShowMessage($"Сервер вернул ошибку: {response.StatusCode}", "Ошибка", MessageBoxImage.Warning); // debug
+                    //ShowMessage($"Сервер вернул ошибку: {response.StatusCode}", "Ошибка", MessageBoxImage.Warning); // debug
                     return false;
                 }
             }
             catch (HttpRequestException ex)
             {
-                ShowMessage($"Ошибка соединения с сервером: {ex.Message}", "Ошибка", MessageBoxImage.Error); // debug
+                //ShowMessage($"Ошибка соединения с сервером: {ex.Message}", "Ошибка", MessageBoxImage.Error); // debug
                 return false;
             }
         }

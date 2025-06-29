@@ -15,7 +15,7 @@ namespace TaskFlow.Services
             return Application.Current.Windows.OfType<Window>().FirstOrDefault(w => w.IsActive);
         }
 
-        public static void ShowSuccessMessage(string apiEndpoint)
+        public static void OpenNextWinow(string apiEndpoint)
         {
             string message;
 

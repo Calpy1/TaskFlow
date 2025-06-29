@@ -1,15 +1,17 @@
 ﻿using System.Windows;
 using System.Windows.Input;
 using TaskFlow.Common;
+using TaskFlow.Controls;
 using TaskFlow.Models;
 using TaskFlow.Properties;
 using TaskFlow.Services;
 
 namespace TaskFlow.Views
 {
-    public partial class RegisterView : Window // TODO: Разделить бизнес-логику и UI по SRP
+    public partial class RegisterView : Window
     {
         private WindowPropertiesSaver _windowSaver;
+        AuthService _authService = new AuthService();
         UIErrorService _errorService = new UIErrorService();
         public UserData UserData { get; }
 
@@ -56,32 +58,15 @@ namespace TaskFlow.Views
         private void ResultButton_Click(object sender, RoutedEventArgs e)
         {
             e.Handled = true;
-            AttemptRegister(validateInputs: true);
-        }
 
-        private async void AttemptRegister(bool validateInputs)
-        {
-            ValidationService validationService = new ValidationService();
-            AuthService authService = new AuthService();
-
-            if (validateInputs)
+            CustomTextBox[] customTextBoxes = new[]
             {
-                if (!validationService.ValidateRequiredFields(EmailTextBox, ConfirmPassTextBox, PasswordTextBox))
-                {
-                    return;
-                }
+                EmailTextBox,
+                ConfirmPassTextBox,
+                PasswordTextBox,
+            };
 
-                if (!validationService.ValidateEmailMatch(PasswordTextBox, ConfirmPassTextBox))
-                {
-                    return;
-                }
-            }
-
-            string email = EmailTextBox.TextBoxInput.Text;
-            string password = PasswordTextBox.TextBoxInput.Text;
-            bool hasError = string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(password);
-
-            await authService.AuthenticateUserAsync(hasError, email, password, rememberMe: false, "api/auth/register");
+            _ = _authService.AttemptRegisterAsync(validateInputs: true, customTextBoxes);
         }
 
         private void HaveAccountButton_Click(object sender, RoutedEventArgs e)
