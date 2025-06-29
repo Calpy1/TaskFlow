@@ -10,22 +10,20 @@ namespace TaskFlow.Views
     public partial class RegisterView : Window
     {
         private WindowPropertiesSaver _windowSaver;
+        UIErrorService _errorService = new UIErrorService();
         public UserData UserData { get; }
-        private readonly AuthHelper _auth;
 
         public RegisterView()
         {
             InitializeComponent();
             UserData = new UserData();
             DataContext = this;
-            _auth = new AuthHelper();
 
-            _auth.AttachInputEventHandlers(EmailTextBox);
-            _auth.AttachInputEventHandlers(ConfirmPassTextBox);
-            _auth.AttachInputEventHandlers(PasswordTextBox);
+            _errorService.AttachInputEventHandlers(EmailTextBox);
+            _errorService.AttachInputEventHandlers(ConfirmPassTextBox);
+            _errorService.AttachInputEventHandlers(PasswordTextBox);
 
             this.MouseDown += Window_MouseDown;
-            //this.KeyDown += Window_KeyDown;
         }
 
         protected override void OnSourceInitialized(EventArgs e)
@@ -63,14 +61,17 @@ namespace TaskFlow.Views
 
         private async void AttemptRegister(bool validateInputs)
         {
+            ValidationService validationService = new ValidationService();
+            AuthService authService = new AuthService();
+
             if (validateInputs)
             {
-                if (!_auth.ValidateRequiredFields(EmailTextBox, ConfirmPassTextBox, PasswordTextBox))
+                if (!validationService.ValidateRequiredFields(EmailTextBox, ConfirmPassTextBox, PasswordTextBox))
                 {
                     return;
                 }
 
-                if (!_auth.ValidateEmailMatch(PasswordTextBox, ConfirmPassTextBox))
+                if (!validationService.ValidateEmailMatch(PasswordTextBox, ConfirmPassTextBox))
                 {
                     return;
                 }
@@ -80,7 +81,7 @@ namespace TaskFlow.Views
             string password = PasswordTextBox.TextBoxInput.Text;
             bool hasError = string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(password);
 
-            await _auth.AuthenticateUserAsync(hasError, email, password, rememberMe: false, "api/auth/register");
+            await authService.AuthenticateUserAsync(hasError, email, password, rememberMe: false, "api/auth/register");
         }
 
         private void HaveAccountButton_Click(object sender, RoutedEventArgs e)

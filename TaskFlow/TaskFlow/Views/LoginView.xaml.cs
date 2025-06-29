@@ -10,18 +10,19 @@ namespace TaskFlow.Views
     public partial class LoginView : Window
     {
         private WindowPropertiesSaver _windowSaver;
+        private UIErrorService _errorService = new UIErrorService();
+        private AuthService _authService = new AuthService();
+        private ValidationService _validationService = new ValidationService();
         public UserData UserData { get; }
-        private readonly AuthHelper _auth;
 
         public LoginView()
         {
             InitializeComponent();
             UserData = new UserData();
             DataContext = this;
-            _auth = new AuthHelper();
 
-            _auth.AttachInputEventHandlers(EmailTextBox);
-            _auth.AttachInputEventHandlers(PasswordTextBox);
+            _errorService.AttachInputEventHandlers(EmailTextBox);
+            _errorService.AttachInputEventHandlers(PasswordTextBox);
 
             this.MouseDown += Window_MouseDown;
 
@@ -49,7 +50,7 @@ namespace TaskFlow.Views
 
         private async void LoginView_Loaded(object sender, RoutedEventArgs e)
         {
-            bool quickLoginSuccess = await _auth.TryQuickLoginAsync();
+            bool quickLoginSuccess = await _authService.TryQuickLoginAsync();
 
             if (quickLoginSuccess)
             {
@@ -79,7 +80,7 @@ namespace TaskFlow.Views
         {
             if (validateInputs)
             {
-                if (!_auth.ValidateRequiredFields(EmailTextBox, PasswordTextBox))
+                if (!_validationService.ValidateRequiredFields(EmailTextBox, PasswordTextBox))
                 {
                     return;
                 }
@@ -90,7 +91,7 @@ namespace TaskFlow.Views
             bool hasError = string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(password);
             bool rememberUser = CheckBoxRememberMe.IsChecked == true;
 
-            await _auth.AuthenticateUserAsync(hasError, email, password, rememberUser, "api/auth/login");
+            await _authService.AuthenticateUserAsync(hasError, email, password, rememberUser, "api/auth/login");
         }
 
         private void HaveAccountButton_Click(object sender, RoutedEventArgs e)
