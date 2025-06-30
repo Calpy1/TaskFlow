@@ -22,18 +22,5 @@ namespace TaskFlow.Services
             }
             return allValid;
         }
-
-        public bool ValidateEmailMatch(CustomTextBox passField, CustomTextBox confirmPassField)
-        {
-            if (!string.IsNullOrWhiteSpace(passField.Text) &&
-                !string.IsNullOrWhiteSpace(confirmPassField.Text) &&
-                !passField.Text.Equals(confirmPassField.Text, StringComparison.OrdinalIgnoreCase))
-            {
-                UIErrorService.MarkFieldAsError(passField);
-                UIErrorService.MarkFieldAsError(confirmPassField);
-                return false;
-            }
-            return true;
-        }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using MySql.Data;
 using MySql.Data.MySqlClient;
+using System.Data;
 
 namespace TaskFlowTaskServer.Models
 {
@@ -52,11 +53,39 @@ namespace TaskFlowTaskServer.Models
             return tasks;
         }
 
+        public async Task<int?> GetCompanyIdAsync()
+        {
+            try
+            {
+                string query = "SELECT company_id FROM user_data.users WHERE email = @AuthorEmail";
+
+                var parameters = new MySqlParameter[]
+                {
+                    new MySqlParameter("@AuthorEmail", this.AuthorEmail),
+                };
+
+                DataTable dataTable = await QueryAsync(query, parameters);
+
+                if (dataTable.Rows.Count > 0)
+                {
+                    return Convert.ToInt32(dataTable.Rows[0]["company_id"]);
+                }
+
+                return null;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                return null;
+            }
+        }
+
         public async Task<bool> AddTaskAsync()
         {
             try
             {
-                string query = "INSERT INTO task_data.tasks (task_name, task_author, task_assignee, created_date, due_date, task_priority, task_status) VALUES (@TaskName, @TaskAuthor, @TaskAssignee, @CreatedDate, @DueDate, @TaskPriority, @TaskStatus)";
+                int? companyId = await GetCompanyIdAsync();
+                string query = "INSERT INTO task_data.tasks (task_name, task_author, task_assignee, created_date, due_date, task_priority, task_status, company_id) VALUES (@TaskName, @TaskAuthor, @TaskAssignee, @CreatedDate, @DueDate, @TaskPriority, @TaskStatus, @CompanyId)";
 
                 var parameters = new MySqlParameter[]
                 {
@@ -67,6 +96,7 @@ namespace TaskFlowTaskServer.Models
                     new MySqlParameter("@DueDate", this.DueDate),
                     new MySqlParameter("@TaskPriority", this.TaskPriority),
                     new MySqlParameter("@TaskStatus", this.TaskStatus),
+                    new MySqlParameter("@CompanyId", companyId),
                 };
                 return await AddDataAsync(query, parameters);
             }

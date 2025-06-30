@@ -6,6 +6,7 @@ using TaskFlow.Models;
 using System.IO;
 using TaskFlow.Controls;
 using System.Windows.Controls;
+using TaskFlow.Views;
 
 namespace TaskFlow.Services
 {
@@ -19,9 +20,9 @@ namespace TaskFlow.Services
             BaseAddress = new Uri("https://localhost:7034/")
         };
 
-        public async Task<bool> AuthenticateWithApiAsync(string email, string hashedPassword, string userToken, string mac, string apiEndpoint)
+        public async Task<bool> AuthenticateWithApiAsync(string email, string hashedPassword, string companySlug, string userToken, string mac, string apiEndpoint)
         {
-            var requestData = new { Email = email.Trim(), Password = hashedPassword.Trim(), UserToken = userToken, Mac = mac };
+            var requestData = new { Email = email.Trim(), Password = hashedPassword.Trim(), CompanySlug = companySlug, UserToken = userToken, Mac = mac };
 
             try
             {
@@ -46,12 +47,19 @@ namespace TaskFlow.Services
         public async Task<bool> QuickLoginWithApiAsync(string email, string userToken, string mac, string apiEndpoint)
         {
             var requestData = new { Email = email.Trim(), UserToken = userToken, Mac = mac };
+            CurrentUser currentUser = new CurrentUser();
 
             try
             {
                 var response = await HttpClient.PostAsJsonAsync(apiEndpoint, requestData);
                 if (response.IsSuccessStatusCode)
                 {
+                    currentUser.Email = email;
+
+                    App.CurrentUser = currentUser;
+
+                    NavigationService.OpenNextWinow(apiEndpoint);
+
                     return true;
                 }
                 else
@@ -67,7 +75,7 @@ namespace TaskFlow.Services
             }
         }
 
-        public async Task<bool> AuthenticateUserAsync(bool hasValidationErrors, string email, string password, bool rememberMe, string apiEndpoint)
+        public async Task<bool> AuthenticateUserAsync(bool hasValidationErrors, string email, string password, string? companySlug, bool rememberMe, string apiEndpoint)
         {
             if (hasValidationErrors)
             {
@@ -79,7 +87,7 @@ namespace TaskFlow.Services
                 string hashedPassword = SecurityService.HashPassword(password);
                 string? userToken = rememberMe ? Guid.NewGuid().ToString() : null;
 
-                bool isAuthenticated = await AuthenticateWithApiAsync(email, hashedPassword, userToken, _userMac, apiEndpoint);
+                bool isAuthenticated = await AuthenticateWithApiAsync(email, hashedPassword, companySlug, userToken, _userMac, apiEndpoint);
 
                 if (isAuthenticated)
                 {
@@ -89,6 +97,14 @@ namespace TaskFlow.Services
                     }
 
                     NavigationService.OpenNextWinow(apiEndpoint);
+
+                    CurrentUser currentUser = new CurrentUser()
+                    {
+                        Email = email,
+                    };
+
+                    App.CurrentUser = currentUser;
+
                     return true;
                 }
                 else
@@ -148,7 +164,7 @@ namespace TaskFlow.Services
             bool hasError = string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(password);
             bool rememberUser = checkBox.IsChecked == true;
 
-            await AuthenticateUserAsync(hasError, email, password, rememberUser, "api/auth/login");
+            await AuthenticateUserAsync(hasError, email, password, string.Empty, rememberUser, "api/auth/login");
         }
 
         public async Task AttemptRegisterAsync(bool validateInputs, CustomTextBox[] fields)
@@ -157,17 +173,12 @@ namespace TaskFlow.Services
             AuthService authService = new AuthService();
 
             var emailTextBox = fields[0];
-            var confirmPasswordTextBox = fields[1];
-            var passwordTextBox = fields[2];
+            var passwordTextBox = fields[1];
+            var companySlugTextBox = fields[2];
 
             if (validateInputs)
             {
-                if (!validationService.ValidateRequiredFields(emailTextBox, confirmPasswordTextBox, passwordTextBox))
-                {
-                    return;
-                }
-
-                if (!validationService.ValidateEmailMatch(passwordTextBox, confirmPasswordTextBox))
+                if (!validationService.ValidateRequiredFields(emailTextBox, companySlugTextBox, passwordTextBox))
                 {
                     return;
                 }
@@ -175,9 +186,10 @@ namespace TaskFlow.Services
 
             string email = emailTextBox.TextBoxInput.Text;
             string password = passwordTextBox.TextBoxInput.Text;
-            bool hasError = string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(password);
+            string companySlug = companySlugTextBox.TextBoxInput.Text;
+            bool hasError = string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(password) || string.IsNullOrWhiteSpace(companySlug);
 
-            await authService.AuthenticateUserAsync(hasError, email, password, rememberMe: false, "api/auth/register");
+            await authService.AuthenticateUserAsync(hasError, email, password, companySlug, rememberMe: false, "api/auth/register");
         }
 
         private static void ShowMessage(string text, string caption, MessageBoxImage icon)

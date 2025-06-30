@@ -7,7 +7,7 @@ namespace TaskFlow.Services
 {
     public static class WindowsService
     {
-        public static async Task OpenWindowAsync<T>(Window currentWindow = null) where T : Window, new()
+        public static async Task<T> OpenWindowAsync<T>(Window currentWindow = null) where T : Window, new()
         {
             if (currentWindow != null)
             {
@@ -19,10 +19,25 @@ namespace TaskFlow.Services
                 Opacity = 0
             };
 
+            var tcsLoaded = new TaskCompletionSource<bool>();
+
+            void OnLoaded(object sender, RoutedEventArgs e)
+            {
+                newWindow.Loaded -= OnLoaded;
+                tcsLoaded.SetResult(true);
+            }
+
+            newWindow.Loaded += OnLoaded;
+
             newWindow.Show();
+
+            await tcsLoaded.Task;
+
             await FadeInAsync(newWindow);
 
             currentWindow?.Close();
+
+            return newWindow;
         }
 
         public static Task FadeOutAsync(Window window)

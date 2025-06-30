@@ -39,8 +39,8 @@
                                     PlaceholderText="Email" PlaceholderSymb="👤" />
                 <controls:CustomTextBox x:Name="PasswordTextBox" Text="{Binding UserData.Pass, Mode=TwoWay}"
                                     PlaceholderText="Password" PlaceholderSymb="🔑" />
-                <controls:CustomTextBox x:Name="ConfirmPassTextBox" Text="{Binding UserData.ConfirmPass, Mode=TwoWay}"
-                                    PlaceholderText="Confirm password" PlaceholderSymb="🔑" />
+                <controls:CustomTextBox x:Name="CompanySlug" Text="{Binding UserData.CompanySlug, Mode=TwoWay}"
+                                    PlaceholderText="Your company (TstCo for testing)" PlaceholderSymb="🔑" />
 
                 <Border Background="#FF5A6F86" Height="2" HorizontalAlignment="Stretch" Margin="2, 7, 2, 0"
                     CornerRadius="1" />

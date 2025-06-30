@@ -18,13 +18,14 @@ namespace TaskFlow.Views
         private WindowPropertiesSaver _windowSaver;
         private GetTaskService _taskService = new GetTaskService();
         private readonly TaskCardService _cardService = new TaskCardService();
+        private readonly UserData _userData = new UserData();
 
         public MainView()
         {
             InitializeComponent();
 
             _ = AddTaskCard("First task", "Alexander", "Alexander", "14.08.25", Priority.High, Status.Completed);
-            LoadTasks();
+            //LoadTasks();
         }
 
         public async void LoadTasks()
@@ -63,13 +64,14 @@ namespace TaskFlow.Views
             {
                 TaskName = taskName,
                 TaskAuthor = taskAuthor,
+                AuthorEmail =  App.CurrentUser.Email,
                 TaskAssignee = taskAssignee,
                 CreatedDate = DateTime.Now.ToString("dd.MM.yy"),
                 DueDate = dueDate,
                 TaskPriority = priority.ToString(),
                 TaskStatus = status.ToString(),
-                
             };
+
             CreateTaskService createTaskService = new CreateTaskService();
             await createTaskService.CreateWithApiAsync(task);
         }

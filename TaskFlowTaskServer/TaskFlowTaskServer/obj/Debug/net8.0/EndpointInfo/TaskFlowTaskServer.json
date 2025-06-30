@@ -62,6 +62,10 @@
             "type": "string",
             "nullable": true
           },
+          "authorEmail": {
+            "type": "string",
+            "nullable": true
+          },
           "taskAssignee": {
             "type": "string",
             "nullable": true

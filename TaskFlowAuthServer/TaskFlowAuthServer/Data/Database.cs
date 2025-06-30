@@ -1,5 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 using MySqlX.XDevAPI.Common;
+using System.Data;
 
 namespace TaskFlowAuthServer.Data
 {
@@ -20,6 +21,19 @@ namespace TaskFlowAuthServer.Data
             return result > 0;
         }
 
+        public async Task<DataTable> QueryAsync(string sqlQuery, MySqlParameter[] parameters)
+        {
+            await using var conn = new MySqlConnection(_connectionString);
+            await conn.OpenAsync();
+
+            await using var mySqlCommand = new MySqlCommand(sqlQuery, conn);
+            mySqlCommand.Parameters.AddRange(parameters);
+
+            await using var result = await mySqlCommand.ExecuteReaderAsync();
+            var dataTable = new DataTable();
+            dataTable.Load(result);
+            return dataTable;
+        }
 
         public async Task<bool> ReaderAsync(string sqlQuery, MySqlParameter[] parameters)
         {

@@ -5,8 +5,8 @@ public class UserData : BaseModel
     private string _id;
     private string _token;
     private string _email;
-    private string _confirmPass;
     private string _pass;
+    private string _companySlug;
 
     public string Id
     {
@@ -53,17 +53,17 @@ public class UserData : BaseModel
         }
     }
 
-    public string ConfirmPass
+    public string CompanySlug
     {
-        get => _confirmPass;
+        get => _companySlug;
         set
         {
-            if (_confirmPass == value)
+            if (_companySlug == value)
             {
                 return;
             }
 
-            _confirmPass = value;
+            _companySlug = value;
             OnPropertyChanged();
         }
     }

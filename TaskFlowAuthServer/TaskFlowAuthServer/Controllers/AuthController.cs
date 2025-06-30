@@ -17,9 +17,9 @@ namespace TaskFlowAuthServer.Controllers
         }
 
         [HttpPost("register")]
-        public async Task<IActionResult> Register([FromBody] RegisterModel registerModel) // login, email
+        public async Task<IActionResult> Register([FromBody] RegisterModel registerModel) // login, email, companySlug
         {
-            bool valid = await _loginModel.AddUserAsync(registerModel);
+            bool valid = await _loginModel.TryAddUserAsync(registerModel);
 
             if (valid)
             {

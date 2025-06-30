@@ -7,6 +7,7 @@ namespace TaskFlow.Models
     {
         private string _taskName;
         private string _taskAuthor;
+        private string _authorEmail;
         private string _taskAssignee;
         private SolidColorBrush _taskPriorityColor;
         private string _taskPriorityText;
@@ -59,6 +60,22 @@ namespace TaskFlow.Models
                 }
 
                 _taskAuthor = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string AuthorEmail
+        {
+            get => _authorEmail;
+
+            set
+            {
+                if (_authorEmail == value)
+                {
+                    return;
+                }
+
+                _authorEmail = value;
                 OnPropertyChanged();
             }
         }

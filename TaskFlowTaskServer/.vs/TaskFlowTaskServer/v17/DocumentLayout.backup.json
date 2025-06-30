@@ -7,28 +7,28 @@
       "RelativeMoniker": "D:0:0:{8D3E8C46-BA88-4664-96AD-25D78AD3D14F}|TaskFlowTaskServer\\TaskFlowTaskServer.csproj|solutionrelative:taskflowtaskserver\\models\\taskmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{8D3E8C46-BA88-4664-96AD-25D78AD3D14F}|TaskFlowTaskServer\\TaskFlowTaskServer.csproj|c:\\users\\novos\\desktop\\taskflow\\taskflowtaskserver\\taskflowtaskserver\\models\\basemodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8D3E8C46-BA88-4664-96AD-25D78AD3D14F}|TaskFlowTaskServer\\TaskFlowTaskServer.csproj|solutionrelative:taskflowtaskserver\\models\\basemodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{8D3E8C46-BA88-4664-96AD-25D78AD3D14F}|TaskFlowTaskServer\\TaskFlowTaskServer.csproj|c:\\users\\novos\\desktop\\taskflow\\taskflowtaskserver\\taskflowtaskserver\\controllers\\taskcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{8D3E8C46-BA88-4664-96AD-25D78AD3D14F}|TaskFlowTaskServer\\TaskFlowTaskServer.csproj|solutionrelative:taskflowtaskserver\\controllers\\taskcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8D3E8C46-BA88-4664-96AD-25D78AD3D14F}|TaskFlowTaskServer\\TaskFlowTaskServer.csproj|c:\\users\\novos\\desktop\\taskflow\\taskflowtaskserver\\taskflowtaskserver\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8D3E8C46-BA88-4664-96AD-25D78AD3D14F}|TaskFlowTaskServer\\TaskFlowTaskServer.csproj|solutionrelative:taskflowtaskserver\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{8D3E8C46-BA88-4664-96AD-25D78AD3D14F}|TaskFlowTaskServer\\TaskFlowTaskServer.csproj|c:\\users\\novos\\desktop\\taskflow\\taskflowtaskserver\\taskflowtaskserver\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{8D3E8C46-BA88-4664-96AD-25D78AD3D14F}|TaskFlowTaskServer\\TaskFlowTaskServer.csproj|solutionrelative:taskflowtaskserver\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{8D3E8C46-BA88-4664-96AD-25D78AD3D14F}|TaskFlowTaskServer\\TaskFlowTaskServer.csproj|c:\\users\\novos\\desktop\\taskflow\\taskflowtaskserver\\taskflowtaskserver\\data\\database.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{8D3E8C46-BA88-4664-96AD-25D78AD3D14F}|TaskFlowTaskServer\\TaskFlowTaskServer.csproj|solutionrelative:taskflowtaskserver\\data\\database.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8D3E8C46-BA88-4664-96AD-25D78AD3D14F}|TaskFlowTaskServer\\TaskFlowTaskServer.csproj|c:\\users\\novos\\desktop\\taskflow\\taskflowtaskserver\\taskflowtaskserver\\models\\basemodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8D3E8C46-BA88-4664-96AD-25D78AD3D14F}|TaskFlowTaskServer\\TaskFlowTaskServer.csproj|solutionrelative:taskflowtaskserver\\models\\basemodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{8D3E8C46-BA88-4664-96AD-25D78AD3D14F}|TaskFlowTaskServer\\TaskFlowTaskServer.csproj|c:\\users\\novos\\desktop\\taskflow\\taskflowtaskserver\\taskflowtaskserver\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8D3E8C46-BA88-4664-96AD-25D78AD3D14F}|TaskFlowTaskServer\\TaskFlowTaskServer.csproj|solutionrelative:taskflowtaskserver\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{8D3E8C46-BA88-4664-96AD-25D78AD3D14F}|TaskFlowTaskServer\\TaskFlowTaskServer.csproj|c:\\users\\novos\\desktop\\taskflow\\taskflowtaskserver\\taskflowtaskserver\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
       "RelativeMoniker": "D:0:0:{8D3E8C46-BA88-4664-96AD-25D78AD3D14F}|TaskFlowTaskServer\\TaskFlowTaskServer.csproj|solutionrelative:taskflowtaskserver\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8D3E8C46-BA88-4664-96AD-25D78AD3D14F}|TaskFlowTaskServer\\TaskFlowTaskServer.csproj|c:\\users\\novos\\desktop\\taskflow\\taskflowtaskserver\\taskflowtaskserver\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{8D3E8C46-BA88-4664-96AD-25D78AD3D14F}|TaskFlowTaskServer\\TaskFlowTaskServer.csproj|solutionrelative:taskflowtaskserver\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     }
   ],
   "DocumentGroupContainers": [
@@ -42,7 +42,7 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 3,
               "Title": "launchSettings.json",
               "DocumentMoniker": "C:\\Users\\novos\\Desktop\\TaskFlow\\TaskFlowTaskServer\\TaskFlowTaskServer\\Properties\\launchSettings.json",
               "RelativeDocumentMoniker": "TaskFlowTaskServer\\Properties\\launchSettings.json",
@@ -50,23 +50,25 @@
               "RelativeToolTip": "TaskFlowTaskServer\\Properties\\launchSettings.json",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-06-25T23:25:45.278Z"
+              "WhenOpened": "2025-06-25T23:25:45.278Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 1,
               "Title": "BaseModel.cs",
               "DocumentMoniker": "C:\\Users\\novos\\Desktop\\TaskFlow\\TaskFlowTaskServer\\TaskFlowTaskServer\\Models\\BaseModel.cs",
               "RelativeDocumentMoniker": "TaskFlowTaskServer\\Models\\BaseModel.cs",
               "ToolTip": "C:\\Users\\novos\\Desktop\\TaskFlow\\TaskFlowTaskServer\\TaskFlowTaskServer\\Models\\BaseModel.cs",
               "RelativeToolTip": "TaskFlowTaskServer\\Models\\BaseModel.cs",
-              "ViewState": "AgIAAAUAAAAAAAAAAAAMwBcAAAAgAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-25T21:34:36.714Z"
+              "WhenOpened": "2025-06-25T21:34:36.714Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "appsettings.json",
               "DocumentMoniker": "C:\\Users\\novos\\Desktop\\TaskFlow\\TaskFlowTaskServer\\TaskFlowTaskServer\\appsettings.json",
               "RelativeDocumentMoniker": "TaskFlowTaskServer\\appsettings.json",
@@ -78,15 +80,16 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "Database.cs",
               "DocumentMoniker": "C:\\Users\\novos\\Desktop\\TaskFlow\\TaskFlowTaskServer\\TaskFlowTaskServer\\Data\\Database.cs",
               "RelativeDocumentMoniker": "TaskFlowTaskServer\\Data\\Database.cs",
               "ToolTip": "C:\\Users\\novos\\Desktop\\TaskFlow\\TaskFlowTaskServer\\TaskFlowTaskServer\\Data\\Database.cs",
               "RelativeToolTip": "TaskFlowTaskServer\\Data\\Database.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACcAAAAeAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAtwBgAAAAlAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-25T16:34:58.863Z"
+              "WhenOpened": "2025-06-25T16:34:58.863Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -96,14 +99,14 @@
               "RelativeDocumentMoniker": "TaskFlowTaskServer\\Models\\TaskModel.cs",
               "ToolTip": "C:\\Users\\novos\\Desktop\\TaskFlow\\TaskFlowTaskServer\\TaskFlowTaskServer\\Models\\TaskModel.cs*",
               "RelativeToolTip": "TaskFlowTaskServer\\Models\\TaskModel.cs*",
-              "ViewState": "AgIAAB0AAAAAAAAAAAAuwFAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAACsAAAAAAAAAAAD4vzsAAABOAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-25T16:31:00.812Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "TaskController.cs",
               "DocumentMoniker": "C:\\Users\\novos\\Desktop\\TaskFlow\\TaskFlowTaskServer\\TaskFlowTaskServer\\Controllers\\TaskController.cs",
               "RelativeDocumentMoniker": "TaskFlowTaskServer\\Controllers\\TaskController.cs",
@@ -116,7 +119,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 5,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\novos\\Desktop\\TaskFlow\\TaskFlowTaskServer\\TaskFlowTaskServer\\Program.cs",
               "RelativeDocumentMoniker": "TaskFlowTaskServer\\Program.cs",

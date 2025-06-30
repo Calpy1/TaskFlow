@@ -22,8 +22,8 @@ namespace TaskFlow.Views
             DataContext = this;
 
             _errorService.AttachInputEventHandlers(EmailTextBox);
-            _errorService.AttachInputEventHandlers(ConfirmPassTextBox);
             _errorService.AttachInputEventHandlers(PasswordTextBox);
+            _errorService.AttachInputEventHandlers(CompanySlug);
 
             this.MouseDown += Window_MouseDown;
         }
@@ -62,8 +62,8 @@ namespace TaskFlow.Views
             CustomTextBox[] customTextBoxes = new[]
             {
                 EmailTextBox,
-                ConfirmPassTextBox,
                 PasswordTextBox,
+                CompanySlug,
             };
 
             _ = _authService.AttemptRegisterAsync(validateInputs: true, customTextBoxes);

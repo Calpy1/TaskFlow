@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using TaskFlow.Models;
 
 namespace TaskFlow;
 
@@ -7,4 +8,5 @@ namespace TaskFlow;
 /// </summary>
 public partial class App : Application
 {
+    public static CurrentUser CurrentUser { get; set; }
 }

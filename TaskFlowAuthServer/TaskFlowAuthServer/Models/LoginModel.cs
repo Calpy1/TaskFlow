@@ -1,4 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
+using MySqlX.XDevAPI.Relational;
+using System.Data;
 using System.Diagnostics;
 
 namespace TaskFlowAuthServer.Models
@@ -76,20 +78,54 @@ namespace TaskFlowAuthServer.Models
             }
         }
 
-        public async Task<bool> AddUserAsync(RegisterModel registerModel)
+        public async Task<int?> CheckCompanyExistAsync(RegisterModel registerModel)
         {
             try
             {
-                string query = "INSERT INTO users (email, password_hash) VALUES (@Email, @Password)";
+                string query = "SELECT id FROM companies_data.companies WHERE slug = @CompanySlug";
 
                 var parameters = new MySqlParameter[]
                 {
-                    new MySqlParameter("@Email", registerModel.Email),
-                    new MySqlParameter("@Password", registerModel.Password),
+                    new MySqlParameter("@CompanySlug", registerModel.CompanySlug),
                 };
 
-                var result = await ExecuteNonQueryAsync(query, parameters);
-                return result;
+                DataTable dataTable = await ExecuteQueryAsync(query, parameters);
+                
+                if (dataTable.Rows.Count > 0)
+                {
+                    return Convert.ToInt32(dataTable.Rows[0]["id"]);
+                }
+
+                return null;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return null;
+            }
+        }
+
+        public async Task<bool> TryAddUserAsync(RegisterModel registerModel)
+        {
+            try
+            {
+                int? companyId = await CheckCompanyExistAsync(registerModel);
+
+                if (companyId != null)
+                {
+                    string query = "INSERT INTO users (email, password_hash, company_id) VALUES (@Email, @Password, @CompanyId)";
+
+                    var parameters = new MySqlParameter[]
+                    {
+                        new MySqlParameter("@Email", registerModel.Email),
+                        new MySqlParameter("@Password", registerModel.Password),
+                        new MySqlParameter("@CompanyId", companyId),
+                    };
+
+                    var result = await ExecuteNonQueryAsync(query, parameters);
+                    return result;
+                }
+                return false;
             }
             catch (Exception ex)
             {
