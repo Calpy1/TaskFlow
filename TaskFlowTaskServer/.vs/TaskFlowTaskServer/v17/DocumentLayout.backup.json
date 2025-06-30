@@ -50,8 +50,7 @@
               "RelativeToolTip": "TaskFlowTaskServer\\Properties\\launchSettings.json",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-06-25T23:25:45.278Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-25T23:25:45.278Z"
             },
             {
               "$type": "Document",
@@ -63,8 +62,7 @@
               "RelativeToolTip": "TaskFlowTaskServer\\Models\\BaseModel.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-25T21:34:36.714Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-25T21:34:36.714Z"
             },
             {
               "$type": "Document",
@@ -88,8 +86,7 @@
               "RelativeToolTip": "TaskFlowTaskServer\\Data\\Database.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAtwBgAAAAlAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-25T16:34:58.863Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-25T16:34:58.863Z"
             },
             {
               "$type": "Document",
@@ -97,8 +94,8 @@
               "Title": "TaskModel.cs",
               "DocumentMoniker": "C:\\Users\\novos\\Desktop\\TaskFlow\\TaskFlowTaskServer\\TaskFlowTaskServer\\Models\\TaskModel.cs",
               "RelativeDocumentMoniker": "TaskFlowTaskServer\\Models\\TaskModel.cs",
-              "ToolTip": "C:\\Users\\novos\\Desktop\\TaskFlow\\TaskFlowTaskServer\\TaskFlowTaskServer\\Models\\TaskModel.cs*",
-              "RelativeToolTip": "TaskFlowTaskServer\\Models\\TaskModel.cs*",
+              "ToolTip": "C:\\Users\\novos\\Desktop\\TaskFlow\\TaskFlowTaskServer\\TaskFlowTaskServer\\Models\\TaskModel.cs",
+              "RelativeToolTip": "TaskFlowTaskServer\\Models\\TaskModel.cs",
               "ViewState": "AgIAACsAAAAAAAAAAAD4vzsAAABOAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-25T16:31:00.812Z",
@@ -114,8 +111,7 @@
               "RelativeToolTip": "TaskFlowTaskServer\\Controllers\\TaskController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAA1AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-25T16:27:58.494Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-25T16:27:58.494Z"
             },
             {
               "$type": "Document",

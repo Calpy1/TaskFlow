@@ -24,7 +24,7 @@ namespace TaskFlow.Views
         {
             InitializeComponent();
 
-            _ = AddTaskCard("First task", "Alexander", "Alexander", "14.08.25", Priority.High, Status.Completed);
+            //_ = AddTaskCard("First task", "Alexander", "Alexander", "14.08.25", Priority.High, Status.Completed);
             //LoadTasks();
         }
 

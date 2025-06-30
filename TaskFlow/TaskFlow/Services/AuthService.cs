@@ -58,7 +58,7 @@ namespace TaskFlow.Services
 
                     App.CurrentUser = currentUser;
 
-                    NavigationService.OpenNextWinow(apiEndpoint);
+                    await NavigationService.OpenNextWinow(apiEndpoint);
 
                     return true;
                 }

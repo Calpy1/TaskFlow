@@ -15,23 +15,18 @@ namespace TaskFlow.Services
             return Application.Current.Windows.OfType<Window>().FirstOrDefault(w => w.IsActive);
         }
 
-        public static async void OpenNextWinow(string apiEndpoint)
+        public static async Task OpenNextWinow(string apiEndpoint)
         {
             string message;
 
             switch (apiEndpoint)
             {
                 case "api/auth/register":
-                    //message = "Регистрация прошла успешно.";
+                    await WindowsService.OpenWindowAsync<LoaderView>(FindCurrentWindow());
                     await WindowsService.OpenWindowAsync<LoginView>(FindCurrentWindow());
                     break;
                 case "api/auth/login":
-                    //message = "Авторизация прошла успешно.";
-                    await WindowsService.OpenWindowAsync<LoaderView>(FindCurrentWindow());
-                    await WindowsService.OpenWindowAsync<MainView>(FindCurrentWindow());
-                    break;
                 case "api/auth/quicklogin":
-                    //message = "Авторизация прошла успешно.";
                     await WindowsService.OpenWindowAsync<LoaderView>(FindCurrentWindow());
                     await WindowsService.OpenWindowAsync<MainView>(FindCurrentWindow());
                     break;

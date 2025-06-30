@@ -52,14 +52,6 @@ namespace TaskFlow.Views
         private async void LoginView_Loaded(object sender, RoutedEventArgs e)
         {
             bool quickLoginSuccess = await _authService.TryQuickLoginAsync();
-
-            if (quickLoginSuccess)
-            {
-                //MessageBox.Show("Быстрый вход успешен.", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
-                // TODO: перейти к главному окну
-
-                await WindowsService.OpenWindowAsync<LoaderView>(this);
-            }
         }
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
