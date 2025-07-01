@@ -13,6 +13,14 @@ namespace TaskFlow.Services
 {
     class UIErrorService
     {
+        public UIErrorService(params CustomTextBox[] customTextBoxes)
+        {
+            foreach (var customTextBox in customTextBoxes)
+            {
+                AttachInputEventHandlers(customTextBox);
+            }
+        }
+
         private static readonly SolidColorBrush ErrorBrush = new((Color)ColorConverter.ConvertFromString("#FFE05D5D"));
         private static readonly SolidColorBrush NormalBrush = new((Color)ColorConverter.ConvertFromString("#FF5A6F86"));
         private static readonly SolidColorBrush TransparentBrush = new(Colors.Transparent);

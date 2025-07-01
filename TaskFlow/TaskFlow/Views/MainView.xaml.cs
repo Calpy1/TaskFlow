@@ -17,15 +17,13 @@ namespace TaskFlow.Views
     {
         private WindowPropertiesSaver _windowSaver;
         private GetTaskService _taskService = new GetTaskService();
-        private readonly TaskCardService _cardService = new TaskCardService();
-        private readonly UserData _userData = new UserData();
 
         public MainView()
         {
             InitializeComponent();
 
-            //_ = AddTaskCard("First task", "Alexander", "Alexander", "14.08.25", Priority.High, Status.Completed);
-            //LoadTasks();
+            //_ = AddTaskCard("First task", "Alexander", "Alexander", "14.08.25", Priority.High, Status.Delayed);
+            LoadTasks();
         }
 
         public async void LoadTasks()

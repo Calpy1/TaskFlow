@@ -14,8 +14,8 @@ namespace TaskFlow.Services
         public async Task<TaskCard> CreateCardAsync(string taskName, string author, string assignee, string dueDateRaw, Priority priority, Status status)
         {
             var dueDate = ParseDate(dueDateRaw);
-            var priorityColor = TaskPriority.ToBrush(priority);
-            var statusColor = TaskStatus.ToBrush(status);
+            var priorityColor = ColorConverterService<Priority>.GetColor(priority);
+            var statusColor = ColorConverterService<Status>.GetColor(status);
 
             var statusFormatted = status == Status.In_Progress ? "In Progress" : status.ToString();
 
@@ -31,9 +31,6 @@ namespace TaskFlow.Services
                 StatusColor = statusColor,
                 TaskStatus = statusFormatted
             };
-
-            //bool success = await _createService.CreateWithApiAsync(model);
-            //if (!success) return null;
 
             var card = new TaskCard
             {

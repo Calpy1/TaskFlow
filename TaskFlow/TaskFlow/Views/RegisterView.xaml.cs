@@ -11,8 +11,8 @@ namespace TaskFlow.Views
     public partial class RegisterView : Window
     {
         private WindowPropertiesSaver _windowSaver;
+        UIErrorService _errorService;
         AuthService _authService = new AuthService();
-        UIErrorService _errorService = new UIErrorService();
         public UserData UserData { get; }
 
         public RegisterView()
@@ -21,9 +21,7 @@ namespace TaskFlow.Views
             UserData = new UserData();
             DataContext = this;
 
-            _errorService.AttachInputEventHandlers(EmailTextBox);
-            _errorService.AttachInputEventHandlers(PasswordTextBox);
-            _errorService.AttachInputEventHandlers(CompanySlug);
+            _errorService = new UIErrorService(EmailTextBox, PasswordTextBox, CompanySlug);
 
             this.MouseDown += Window_MouseDown;
         }
@@ -50,12 +48,12 @@ namespace TaskFlow.Views
         {
             if (e.LeftButton == MouseButtonState.Pressed)
             {
-                RegisterMainViewWindow.Focus();
+                this.Focus();
                 DragMove();
             }
         }
 
-        private void ResultButton_Click(object sender, RoutedEventArgs e)
+        private async void ResultButton_Click(object sender, RoutedEventArgs e)
         {
             e.Handled = true;
 
@@ -66,7 +64,7 @@ namespace TaskFlow.Views
                 CompanySlug,
             };
 
-            _ = _authService.AttemptRegisterAsync(validateInputs: true, customTextBoxes);
+            await _authService.AttemptRegisterAsync(validateInputs: true, customTextBoxes);
         }
 
         private void HaveAccountButton_Click(object sender, RoutedEventArgs e)

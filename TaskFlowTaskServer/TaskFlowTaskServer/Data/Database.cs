@@ -22,7 +22,7 @@ namespace TaskFlowTaskServer.Data
             return rowsAffected > 0;
         }
 
-        public async Task<DataTable> QueryAsync(string sqlQuery, MySqlParameter[] parameters)
+        public async Task<DataTable> ExecuteQueryAsync(string sqlQuery, MySqlParameter[] parameters)
         {
             await using var conn = new MySqlConnection(_connectionString);
             await conn.OpenAsync();

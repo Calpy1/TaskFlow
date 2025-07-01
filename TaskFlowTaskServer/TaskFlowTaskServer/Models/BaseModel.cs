@@ -31,7 +31,7 @@ namespace TaskFlowTaskServer.Models
 
         public async Task<DataTable> QueryAsync(string sqlQuery, MySqlParameter[] parameters)
         {
-            return await database.QueryAsync(sqlQuery, parameters);
+            return await database.ExecuteQueryAsync(sqlQuery, parameters);
         }
     }
 }

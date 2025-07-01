@@ -12,7 +12,7 @@ namespace TaskFlow.Views
     public partial class LoginView : Window // TODO: Разделить бизнес-логику и UI по SRP
     {
         private WindowPropertiesSaver _windowSaver;
-        private UIErrorService _errorService = new UIErrorService();
+        private UIErrorService _errorService;
         private AuthService _authService = new AuthService();
         public UserData UserData { get; }
 
@@ -22,8 +22,7 @@ namespace TaskFlow.Views
             UserData = new UserData();
             DataContext = this;
 
-            _errorService.AttachInputEventHandlers(EmailTextBox);
-            _errorService.AttachInputEventHandlers(PasswordTextBox);
+            _errorService = new UIErrorService(EmailTextBox, PasswordTextBox);
 
             this.MouseDown += Window_MouseDown;
 
@@ -58,7 +57,7 @@ namespace TaskFlow.Views
         {
             if (e.LeftButton == MouseButtonState.Pressed)
             {
-                LoginViewMainWindow.Focus();
+                this.Focus();
                 DragMove();
             }
         }

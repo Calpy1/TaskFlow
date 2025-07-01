@@ -58,7 +58,7 @@ namespace TaskFlow.Services
 
                     App.CurrentUser = currentUser;
 
-                    await NavigationService.OpenNextWinow(apiEndpoint);
+                    await NavigationService.OpenNextWinowAsync(apiEndpoint);
 
                     return true;
                 }
@@ -96,7 +96,7 @@ namespace TaskFlow.Services
                         CredentialsStorageService.SaveUserCredentials(email, userToken);
                     }
 
-                    NavigationService.OpenNextWinow(apiEndpoint);
+                    NavigationService.OpenNextWinowAsync(apiEndpoint);
 
                     CurrentUser currentUser = new CurrentUser()
                     {
