@@ -23,16 +23,16 @@ namespace TaskFlow.Services
             {Priority.Low, "#299530"}
         };
 
-        public static SolidColorBrush GetColor(T enumValue)
+        public static SolidColorBrush GetColor(T enumKey)
         {
             string colorHex = string.Empty;
             if (typeof(T) == typeof(Status))
             {
-                StatusColors.TryGetValue((Status)(object)enumValue, out colorHex);
+                StatusColors.TryGetValue((Status)(object)enumKey, out colorHex);
             }
             else if (typeof(T) == typeof(Priority))
             {
-                PriorityColors.TryGetValue((Priority)(object)enumValue, out colorHex);
+                PriorityColors.TryGetValue((Priority)(object)enumKey, out colorHex);
             }
 
             if (string.IsNullOrEmpty(colorHex))
