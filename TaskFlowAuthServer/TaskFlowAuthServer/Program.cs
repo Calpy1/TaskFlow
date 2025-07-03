@@ -7,6 +7,8 @@ namespace TaskFlowAuthServer
         {
             var builder = WebApplication.CreateBuilder(args);
 
+            builder.WebHost.UseUrls("https://localhost:5158", "https://localhost:7034");
+
             // Add services to the container.
 
             builder.Services.AddControllers();

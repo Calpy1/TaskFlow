@@ -1,5 +1,6 @@
 ﻿using MySql.Data;
 using MySql.Data.MySqlClient;
+using System.ComponentModel.Design;
 using System.Data;
 
 namespace TaskFlowTaskServer.Models
@@ -8,7 +9,15 @@ namespace TaskFlowTaskServer.Models
     {
         public async Task<List<BaseModel>> GetTasksAsync()
         {
-            var rows = await GetDataAsync("SELECT * FROM task_data.tasks");
+            int? companyId = await GetCompanyIdAsync();
+            string query = "SELECT * FROM task_data.tasks WHERE company_id = @CompanyId";
+
+            var parameters = new MySqlParameter[]
+            {
+                new MySqlParameter("@CompanyId", companyId),
+            };
+
+            var rows = await GetDataAsync(query, parameters);
 
             List<BaseModel> tasks = new List<BaseModel>();
 
@@ -57,11 +66,11 @@ namespace TaskFlowTaskServer.Models
         {
             try
             {
-                string query = "SELECT company_id FROM user_data.users WHERE email = @AuthorEmail";
+                string query = "SELECT company_id FROM user_data.users WHERE email = @QueryEmail";
 
                 var parameters = new MySqlParameter[]
                 {
-                    new MySqlParameter("@AuthorEmail", this.AuthorEmail),
+                    new MySqlParameter("@QueryEmail", this.QueryEmail),
                 };
 
                 DataTable dataTable = await QueryAsync(query, parameters);

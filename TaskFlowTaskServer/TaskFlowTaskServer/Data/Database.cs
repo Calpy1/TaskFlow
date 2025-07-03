@@ -22,7 +22,7 @@ namespace TaskFlowTaskServer.Data
             return rowsAffected > 0;
         }
 
-        public async Task<DataTable> ExecuteQueryAsync(string sqlQuery, MySqlParameter[] parameters)
+        public async Task<DataTable> ExecuteDataTableAsync(string sqlQuery, MySqlParameter[] parameters)
         {
             await using var conn = new MySqlConnection(_connectionString);
             await conn.OpenAsync();
@@ -36,13 +36,15 @@ namespace TaskFlowTaskServer.Data
             return dataTable;
         }
 
-        public async Task<List<Dictionary<string, string>>> ExecuteQueryAsync(string rawSql)
+        public async Task<List<Dictionary<string, string>>> GetRowsAsync(string rawSql, MySqlParameter[] parameters)
         {
             List<Dictionary<string, string>> rows = new List<Dictionary<string, string>>();
             await using MySqlConnection conn = new MySqlConnection(_connectionString);
             await conn.OpenAsync();
 
             using var mySqlCommand = new MySqlCommand(rawSql, conn);
+            mySqlCommand.Parameters.AddRange(parameters);
+
             var reader = await mySqlCommand.ExecuteReaderAsync();
 
             while (await reader.ReadAsync())

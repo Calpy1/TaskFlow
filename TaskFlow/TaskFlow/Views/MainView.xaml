@@ -6,9 +6,76 @@
         xmlns:local="clr-namespace:TaskFlow.Views"
         xmlns:controls="clr-namespace:TaskFlow.Controls"
         mc:Ignorable="d"
-        Title="MainView" Height="720" Width="1280">
+        Title="MainView" Height="720" Width="1280" MinHeight="540" MinWidth="960">
     <Grid>
-        <WrapPanel x:Name="CardsPanel" Orientation="Horizontal" VerticalAlignment="Top">
-        </WrapPanel>
+        <Grid x:Name="Header">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Row="0" Grid.Column="2" Orientation="Horizontal" Margin="0, 0, 20, 0" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Button x:Name="MyTasksButton" HorizontalAlignment="Center" VerticalAlignment="Center" Content="My Tasks" FontSize="20" Margin="10">
+
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Background" Value="Transparent"/>
+                            <Setter Property="BorderThickness" Value="0"/>
+                            <Setter Property="FontFamily" Value="Bahnschrift SemiLight SemiCondensed"/>
+                            <Setter Property="Cursor" Value="Hand"/>
+                        </Style>
+                    </Button.Style>
+
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border HorizontalAlignment="{TemplateBinding HorizontalAlignment}" VerticalAlignment="{TemplateBinding VerticalAlignment}">
+                                <ContentPresenter Content="{TemplateBinding Content}"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+                <Button x:Name="InboxButton" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Inbox" FontSize="20" Margin="10">
+
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Background" Value="Transparent"/>
+                            <Setter Property="BorderThickness" Value="0"/>
+                            <Setter Property="FontFamily" Value="Bahnschrift SemiLight SemiCondensed"/>
+                            <Setter Property="Cursor" Value="Hand"/>
+                        </Style>
+                    </Button.Style>
+
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border HorizontalAlignment="{TemplateBinding HorizontalAlignment}" VerticalAlignment="{TemplateBinding VerticalAlignment}">
+                                <ContentPresenter Content="{TemplateBinding Content}"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+                <Border Height="40" Width="40" Background="#FFC7C7C7" CornerRadius="8" Margin="10"/>
+                <Ellipse Height="40" Width="40" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Fill="#FFC7C7C7" Margin="10"/>
+
+                <StackPanel.Resources>
+                    <Style TargetType="TextBlock">
+                        <Setter Property="FontFamily" Value="Bahnschrift SemiLight SemiCondensed"/>
+                    </Style>
+                </StackPanel.Resources>
+            </StackPanel>
+
+            <Border>
+                <TextBlock Text="TaskFlow" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0" Grid.Column="0" FontSize="25" FontFamily="Bahnschrift SemiLight SemiCondensed" Margin="25, 0, 10, 0"/>
+            </Border>
+
+            <WrapPanel x:Name="CardsPanel" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top" Grid.Row="1" Grid.ColumnSpan="3">
+            </WrapPanel>
+        </Grid>
     </Grid>
 </Window>

@@ -22,9 +22,10 @@ namespace TaskFlowTaskServer.Controllers
         }
 
         [HttpGet("get-tasks")]
-        public async Task<IActionResult> GetTasksController()
+        public async Task<IActionResult> GetTasksController([FromQuery] string queryEmail)
         {
             TaskModel taskModel = new TaskModel();
+            taskModel.QueryEmail = queryEmail;
             var tasks = await taskModel.GetTasksAsync();
             return Ok(tasks);
         }

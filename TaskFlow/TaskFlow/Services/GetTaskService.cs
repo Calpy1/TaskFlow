@@ -15,7 +15,9 @@ namespace TaskFlow.Services
             List<TaskCard> taskCards = new List<TaskCard>();
             try
             {
-                var taskList = await HttpClient.GetFromJsonAsync<List<TaskModel>>("api/tasks/get-tasks");
+                string email = App.CurrentUser.Email;
+
+                var taskList = await HttpClient.GetFromJsonAsync<List<TaskModel>>($"api/tasks/get-tasks?queryEmail={Uri.EscapeDataString(email)}");
 
                 if (taskList.Count > 0)
                 {

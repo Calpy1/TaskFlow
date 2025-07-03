@@ -41,6 +41,15 @@
         "tags": [
           "Task"
         ],
+        "parameters": [
+          {
+            "name": "queryEmail",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -62,7 +71,7 @@
             "type": "string",
             "nullable": true
           },
-          "authorEmail": {
+          "queryEmail": {
             "type": "string",
             "nullable": true
           },
@@ -83,6 +92,10 @@
             "nullable": true
           },
           "taskStatus": {
+            "type": "string",
+            "nullable": true
+          },
+          "companyId": {
             "type": "string",
             "nullable": true
           }

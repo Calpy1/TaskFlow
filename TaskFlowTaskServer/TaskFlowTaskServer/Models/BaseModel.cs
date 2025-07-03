@@ -8,18 +8,19 @@ namespace TaskFlowTaskServer.Models
     {
         public string TaskName { get; set; }
         public string TaskAuthor { get; set; }
-        public string AuthorEmail { get; set; }
+        public string QueryEmail { get; set; }
         public string TaskAssignee { get; set; }
         public string CreatedDate { get; set; }
         public string DueDate { get; set; }
         public string TaskPriority { get; set; }
         public string TaskStatus { get; set; }
+        public string CompanyId { get; set; }
 
         Database database = new Database();
 
-        public async Task<List<Dictionary<string, string>>> GetDataAsync(string sqlQuery)
+        public async Task<List<Dictionary<string, string>>> GetDataAsync(string sqlQuery, MySqlParameter[] parameters)
         {
-            var rows = await database.ExecuteQueryAsync(sqlQuery);
+            var rows = await database.GetRowsAsync(sqlQuery, parameters);
             return rows;
         }
 
@@ -31,7 +32,7 @@ namespace TaskFlowTaskServer.Models
 
         public async Task<DataTable> QueryAsync(string sqlQuery, MySqlParameter[] parameters)
         {
-            return await database.ExecuteQueryAsync(sqlQuery, parameters);
+            return await database.ExecuteDataTableAsync(sqlQuery, parameters);
         }
     }
 }
